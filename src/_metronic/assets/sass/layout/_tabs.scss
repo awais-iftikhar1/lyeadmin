@@ -1,0 +1,23 @@
+//
+// Tabs
+//
+
+// General mode
+.layout {
+  &-tabs {
+    & > div {
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+// Component mode
+
+.react-tabs {
+  &__tab-list {
+    border: 0;
+    margin: 0 0 1.5rem;
+  }
+}

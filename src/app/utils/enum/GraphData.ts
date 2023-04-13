@@ -1,0 +1,7 @@
+export enum INTERVAL_ENUM {
+  HOURLY = 'HOURLY',
+  DAILY = 'DAILY',
+  WEEKLY = 'WEEKLY',
+  MONTHLY = 'MONTHLY',
+  YEARLY = 'YEARLY',
+}

@@ -1,0 +1,158 @@
+//
+// Root
+//
+
+html {
+  font-family: sans-serif;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: $root-font-size !important;
+  font-weight: $font-weight-base;
+  font-family: $font-family-sans-serif;
+
+  // Tablet mode
+  @include media-breakpoint-down(lg) {
+    font-size: $root-font-size-lg !important;
+  }
+
+  // Mobile mode
+  @include media-breakpoint-down(md) {
+    font-size: $root-font-size-md !important;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  a:hover,
+  a:active,
+  a:focus {
+    text-decoration: none !important;
+  }
+}
+
+canvas {
+  user-select: none;
+}
+
+// Angular integration
+router-outlet {
+  display: none;
+}
+
+.verification-box {
+  max-width: 400px;
+  margin: auto;
+}
+
+.twofa-check-box {
+  display: flex;
+  align-items: center;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.table-noData {
+  height: 4rem !important;
+
+  .no-data {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--kt-form-label-color);
+  }
+}
+
+.svg-icon-custom {
+  svg {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+.async-dropdown {
+  [class*='singleValue'] {
+    display: none;
+  }
+}
+
+[class*='container'] {
+  [class*='ValueContainer'] {
+    min-width: 200px;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
+  [class*='multiValue'] {
+    display: none;
+    background: transparent;
+
+    &:first-child {
+      display: block;
+    }
+  }
+  
+  [class*='control'] {
+    border: 0;
+    box-shadow: none;
+    border-radius: 0.5rem;
+    background-color: var(--bs-gray-200);
+  }
+
+  [class*='MenuList'] {
+    padding: 0;
+  }
+
+  [class*='option'] {
+    &:first-child {
+      border-radius: .5rem .5rem 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 .5rem .5rem;
+    }
+  }
+
+  [class*='placeholder'] {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--bs-gray-500);
+  }
+
+  .is--selected {
+    background-color: inherit;
+    
+    p {
+      color: var(--bs-dark) !important;
+    }
+  }
+}
+
+.text-capital {
+  .capital-case {
+    text-transform: capitalize;
+  }
+}
+
+.dropdown--input {
+  [class*='-ValueContainer'] {
+    padding: 0.9rem 1.5rem;
+  }
+}

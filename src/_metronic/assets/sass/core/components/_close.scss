@@ -1,0 +1,20 @@
+//
+// Close
+//
+
+.btn-close {
+	color: var(--kt-btn-close-color);
+	background-image: var(--kt-btn-close-bg); 
+	background-position: center;
+	
+
+	&:hover {
+		color: var(--kt-btn-close-color);
+	}
+}
+
+.icon-close {
+	position: absolute;
+	top: -0.5rem;
+	right: -0.5rem;
+}
