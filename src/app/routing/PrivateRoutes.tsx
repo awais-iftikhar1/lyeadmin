@@ -27,6 +27,15 @@ const PrivateRoutes = () => {
   const Engine = lazy(() =>
   import('../modules/apps/engine-management/Engine')
 );
+const VehicleMachine = lazy(() =>
+import('../modules/apps/vehicle-machine-management/VehicleMachine')
+);
+const Make = lazy(() =>
+import('../modules/apps/make-management/Make')
+);
+const Model = lazy(() =>
+import('../modules/apps/model-management/Model')
+);
   const Filters = lazy(() =>
   import('../modules/apps/filter-management/Filters')
   );
@@ -132,6 +141,30 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <Engine/>
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='vehicle-machine-management/*'
+          element={
+            <SuspensedView>
+              <VehicleMachine/>
+            </SuspensedView>
+          }
+        />
+            <Route
+          path='make-management/*'
+          element={
+            <SuspensedView>
+              <Make/>
+            </SuspensedView>
+          }
+        />
+            <Route
+          path='model-management/*'
+          element={
+            <SuspensedView>
+              <Model/>
             </SuspensedView>
           }
         />

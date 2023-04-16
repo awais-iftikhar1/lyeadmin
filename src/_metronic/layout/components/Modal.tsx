@@ -7,10 +7,11 @@ import { KTSVG } from '../../helpers';
 import { EngineType } from '../../../app/modules/apps/engine-management/types';
 import { FuelType } from '../../../app/modules/apps/fuel-management/types';
 import { Filter, FilterType } from '../../../app/modules/apps/filter-management/types';
+import { ModelType } from '../../../app/modules/apps/model-management/types';
 
 type Props = {
   show: boolean;
-  data: FuelType|EngineType|Filter|FilterType|null;
+  data: FuelType|EngineType|Filter|FilterType|ModelType|null;
   handleClose: () => void;
   children:React.ReactNode
 };

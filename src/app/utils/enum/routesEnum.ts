@@ -1,5 +1,9 @@
 export enum ROUTES {
     engine='Engines',
     fuels= 'Feuls',
-    filters= 'Filters'
+    filters= 'Filters',
+    vehiclemachine='Vehicle Machine',
+    make="Make",
+    model="Model"
+
 }   

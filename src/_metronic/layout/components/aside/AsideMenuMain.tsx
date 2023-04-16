@@ -17,7 +17,7 @@ export function AsideMenuMain() {
     (async () => {
       const { user } = await getLoginDetails();
       //todo
-     user?.adminRole?.privileges.push('Fuels','Engines','Filters')
+     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -54,6 +54,27 @@ export function AsideMenuMain() {
         to='/engine-management/engine'
         icon='/media/icons/duotune/general/gen051.svg'
         title='Engine'
+        fontIcon='bi-layers'
+      />
+       <AsideMenuItem
+        isDisabled={privileges?.includes('vehiclemachine')}
+        to='/vehicle-machine-management/vehiclemachine'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Vehicle Machine'
+        fontIcon='bi-layers'
+      />
+      <AsideMenuItem
+        isDisabled={privileges?.includes('make')}
+        to='/make-management/make'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Make'
+        fontIcon='bi-layers'
+      />
+      <AsideMenuItem
+        isDisabled={privileges?.includes('model')}
+        to='/model-management/model'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Model'
         fontIcon='bi-layers'
       />
          <AsideMenuItem
