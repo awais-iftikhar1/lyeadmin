@@ -48,11 +48,38 @@ export function Login() {
       setLoading(true);
       try {
         const { data: auth } = await login(values.email, values.password);
+        debugger
+        console.log(auth);
+        
         navigate('/auth');
-        sessionStorage.setItem('jwt', auth.token);
-        saveAuth(auth.token);
-        setCurrentUser(auth.user);
-        setUserDetails(auth);
+        sessionStorage.setItem('jwt', auth.data.authToken);
+        localStorage.setItem('auth_token', auth.data.authToken);
+
+        localStorage.setItem('phone_no',auth.data.phoneNumber)
+        saveAuth(auth.data.authToken);
+        setCurrentUser({
+          ...auth.data,
+          user:{
+            adminRole:{
+              privileges:[
+                'Fuel','Engine','Filters','VehicleMachine','Make','Model','Vehicle'
+
+              ]
+            }
+          }
+        });
+        setUserDetails({
+          ...auth.data,
+          user:{
+            adminRole:{
+              privileges:[
+                'Fuel','Engine','Filters','VehicleMachine','Make','Model','Vehicle'
+
+              ]
+            }
+          }
+
+        });
         formik.setFieldValue('email', '');
         formik.setFieldValue('password', '');
       } catch (error) {

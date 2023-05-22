@@ -33,6 +33,9 @@ import('../modules/apps/vehicle-machine-management/VehicleMachine')
 const Make = lazy(() =>
 import('../modules/apps/make-management/Make')
 );
+const Vehicle = lazy(() =>
+import('../modules/apps/vehicle-management/Vehicle')
+);
 const Model = lazy(() =>
 import('../modules/apps/model-management/Model')
 );
@@ -54,6 +57,8 @@ import('../modules/apps/model-management/Model')
   );
 
   const { userDetails } = useAuth();
+  console.log(userDetails);
+  
   const Privileges = userDetails?.user?.adminRole?.privileges.map((element) => {
     return element.toLowerCase().split(/\s+/)[0];
   });
@@ -157,6 +162,14 @@ import('../modules/apps/model-management/Model')
           element={
             <SuspensedView>
               <Make/>
+            </SuspensedView>
+          }
+        />
+             <Route
+          path='vehicle-management/*'
+          element={
+            <SuspensedView>
+              <Vehicle/>
             </SuspensedView>
           }
         />

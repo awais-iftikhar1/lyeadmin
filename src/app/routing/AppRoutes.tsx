@@ -27,8 +27,9 @@ const { PUBLIC_URL } = process.env;
 
 const AppRoutes: FC = () => {
   const { currentUser, userDetails, isVerified, isPassUpdated } = useAuth();
+  // currentUser?.adminRole?.privileges.push('dashboard','Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle')
   const Privileges = currentUser?.adminRole?.privileges.map((element) => {
-    return element.toLowerCase().split(/\s+/)[0];
+    return element.toLowerCase().split(/\s+/)[0]
   });
 
   return (
@@ -43,7 +44,7 @@ const AppRoutes: FC = () => {
               <Route path='auth/*' element={<AuthResetPassword />} />
               <Route path='*' element={<Navigate to='/auth' />} />
             </>
-          ) : userDetails?.user.enabled_twofa && !isVerified ? (
+          ) : userDetails?.user?.enabled_twofa && !isVerified ? (
             <>
               <Route path='auth/*' element={<AuthLogin />} />
               <Route path='*' element={<Navigate to='/auth' />} />

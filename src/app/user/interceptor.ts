@@ -10,11 +10,13 @@ const Axios = axios.create({
  */
 
 Axios.interceptors.request.use((req:AxiosRequestConfig<any>) => {
-	const auth_token = localStorage.getItem('auth_token');
+	const auth_token = JSON.parse(localStorage.getItem('auth_token')!);
 	const phone_no = localStorage.getItem('phone_no');
 	if(req.headers){
 		req.headers.auth_token =  auth_token ? `${auth_token}` : '';
 		req.headers.phone_number =  phone_no ? `${phone_no}` : '';
+		req.headers.device_token =  '1234567';
+		req.headers.platform ='adminpanel'
 	}
     return req;
 });

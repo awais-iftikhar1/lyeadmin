@@ -4,6 +4,6 @@ export enum ROUTES {
     filters= 'Filters',
     vehiclemachine='Vehicle Machine',
     make="Make",
-    model="Model"
-
+    model="Model",
+    vehicle="Vehicle"
 }   

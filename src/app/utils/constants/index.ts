@@ -6,7 +6,8 @@ export const routes = {
     filters: 'Filters',
     vehiclemachine:'Vehicle Machine',
     make:"Make",
-    model:"Model"
+    model:"Model",
+    vehicle:"Vehicle"
 }
 export const breadCrumbsData ={
     [ROUTES.engine] : [
@@ -79,8 +80,33 @@ export const breadCrumbsData ={
           isActive: false,
         },
       ],
+      [ROUTES.vehicle] : [
+        {
+          title: 'Vehicle Management',
+          path: '/vehicle-management/vehicle',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
 }
 
+
+export const vehicleMachineTypes = [
+  {
+    label:'Vehicle',
+    value:'Vehicle'
+  },
+  {
+    label:'Motorcycle',
+    value:'Motorcycle'
+  },
+]
 
 export const vehicleTypes = [
   {
@@ -94,5 +120,16 @@ export const vehicleTypes = [
   {
     label:'Generator',
     value:'Generator'
+  }
+]
+
+export const status = [
+  {
+    label:'Valid',
+    value:'Valid'
+  },
+  {
+    label:'InValid',
+    value:'InValid'
   }
 ]
