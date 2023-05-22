@@ -17,7 +17,7 @@ export function AsideMenuMain() {
     (async () => {
       const { user } = await getLoginDetails();
       //todo
-     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model')
+     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -68,6 +68,13 @@ export function AsideMenuMain() {
         to='/make-management/make'
         icon='/media/icons/duotune/general/gen051.svg'
         title='Make'
+        fontIcon='bi-layers'
+      />
+       <AsideMenuItem
+        isDisabled={privileges?.includes('vehicle')}
+        to='/vehicle-management/vehicle'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Vehicle'
         fontIcon='bi-layers'
       />
       <AsideMenuItem

@@ -40,7 +40,9 @@ const Error404: FC = () => {
               ? 'dashbord'
               : `${privileges[0]}-management/${privileges[0]}`)
           }`}
+          // to={`/auth`}
           className='btn btn-primary'
+          onClick={()=>localStorage.clear()}
         >
           Return Home
         </Link>

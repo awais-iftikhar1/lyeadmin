@@ -6,7 +6,7 @@ import Select, {
 } from 'react-select';
 import { KTSVG } from '../../../helpers';
 
-type Value = {
+export type Value = {
   value: string;
   label: string;
   image?: string;

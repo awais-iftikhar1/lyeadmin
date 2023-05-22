@@ -18,6 +18,7 @@ export interface AuthModel {
   user: UserLogin;
   token: any;
   refreshToken?: string;
+  data:any
 }
 
 export interface UserAddressModel {

@@ -5,14 +5,16 @@ import { AuthModel, UserModel } from './_models';
 // const API_URL = process.env.REACT_APP_API_URL;
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/admin/details`
-export const LOGIN_URL = `${API_URL}admin/login`;
+// export const LOGIN_URL = `${API_URL}admin/login`;
+export const LOGIN_URL = `${'http://135.148.40.91:2000/api/'}employee/adminLogin`;
+
 export const REGISTER_URL = `${API_URL}register`;
 export const REQUEST_PASSWORD_URL = `${API_URL}admin/forget-password`;
 
 // Server should return AuthModel
-export function login(username: string, password: string) {
+export function login(email: string, password: string) {
   return axios.post<AuthModel>(LOGIN_URL, {
-    username,
+    email,
     password,
   });
 }
