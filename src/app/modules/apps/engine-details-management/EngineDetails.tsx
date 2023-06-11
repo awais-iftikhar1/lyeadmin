@@ -1,22 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { Route, Routes, Outlet, Navigate, useRoutes } from 'react-router-dom';
-import { PageLink, PageTitle } from '../../../../_metronic/layout/core';
-import { Tabs } from 'react-tabs';
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
+import {  PageTitle } from '../../../../_metronic/layout/core';
 import Pagination from 'rc-pagination';
 import { KTCard, KTCardBody } from '../../../../_metronic/helpers';
 import Toast from '../../components/Toast';
-import { EngineListing } from '../../../../_metronic/partials/widgets/tables/EngineListing';
-import { getEngineType } from '../../../api/engineType.ts';
+import { Tabs } from 'react-tabs';
+import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
 import { usePathName } from '../../../hook/usePathName';
-import { ROUTES } from '../../../utils/enum/routesEnum';
-import { breadCrumbsData, routes } from '../../../utils/constants';
+import { VehicleListing } from '../../../../_metronic/partials/widgets/tables/VehicleListing';
+import { viewVehicle } from '../../../api/Vehicle.ts';
+import { EngineDetailListing } from '../../../../_metronic/partials/widgets/tables/EngineDetailListing';
+import { viewEngine } from '../../../api/EngineDetails.ts';
 
 
-const Engine = () => {
-  const {route} = usePathName()
-  
-  const [engineList, setEngineList] = useState<string[]>([]);
+
+const EngineDetails = () => {
+  const [filterList, setFilterList] = useState<any[]>([]);
   const [refreshList, setRefreshList] = useState<boolean>(false);
   const [isloading, setIsLoading] = useState<boolean>(false);
   const [stateMsg, setStateMsg] = useState<string>('');
@@ -24,11 +24,18 @@ const Engine = () => {
   const [boolState, setBoolState] = useState<string>('');
   const [tabIndex, setTabIndex] = useState(0);
   const [userCount, setUserCount] = useState<number>(0);
+
+  const [vehicleDropDown,setVehicleDropDown]  = useState([])
+
+
+  const [value, setValue] = useState('Vehicle');
+  // const [value, setValue] = useState(0);
+
+  const {route} = usePathName()
+
   const [perPage] = useState<number>(10);
   const [size, setSize] = useState<number>(perPage);
   const [current, setCurrent] = useState<number>(1);
-  const [value, setValue] = useState('Vehicle');
-
 
   const PerPageChange = (value: number) => {
     setSize(value);
@@ -41,7 +48,7 @@ const Engine = () => {
   const getData = (current: number, pageSize: number) => {
     // Normally you should get the data from the server
     // return data.slice((current - 1) * pageSize, current * pageSize);
-    return engineData(value,current, pageSize);
+    return filterData(value,current, pageSize);
   };
 
   const PaginationChange = (page: number, pageSize: number) => {
@@ -79,13 +86,16 @@ const Engine = () => {
     return originalElement;
   };
 
-  const engineData = async (filterType:string,pageSize: number, page: number) => {
+  const filterData = async (filterType: string,pageSize: number, page: number) => {
     setIsLoading(true);
     try {
-      const data = await getEngineType(filterType,pageSize, page - 1);
-      console.log(data);
-      
-      setEngineList(data?.data);
+      // const data = await viewEngine(id,pageSize, page - 1);
+      // console.log(data);
+      const data = await viewVehicle(filterType,size, current - 1);
+      //@ts-ignore
+      // setFilterList(data);
+      setFilterList(data?.data.rows);
+
       // setUserCount(data?.data.count);
     } catch (error) {
       console.log('Error', error);
@@ -98,30 +108,55 @@ const Engine = () => {
 
 
   useEffect(() => {
-    engineData(value,size, current);
+    (async() => {
+      const data = await viewVehicle('vehicle',size, current - 1);
+      console.log(data);
+      let vehicleData = data.data.rows.map((res:any) => {
+        return {
+          label:res.model.modelName,
+          value: res.id
+        }
+      })
+      // setValue(vehicleData?.[0].id)
+      setVehicleDropDown(vehicleData)
+    })()
+  },[])
+
+  useEffect(() => {
+    filterData(value ,size, current);
     setRefreshList(false);
   }, [refreshList,value]);
+
+  console.log(value);
+    console.log(routes);
+    console.log(route);
+    
+    
 
   return (
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path='engine'
+          path='enginedetails'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbsData.Engines}>{ROUTES[route as keyof typeof routes] }</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbsData['Engine Detail']}>{routes[route as keyof typeof routes] }</PageTitle>
 
               <Tabs
                 selectedTabClassName='btn-primary'
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
               >
-                  <KTCard>
+              
+                <KTCard>
                     <KTCardBody className='py-4'>
-                      <EngineListing
+                      <EngineDetailListing
+                      // filterDropDownData={vehicleDropDown}
+                      filterDropDownData={vehicleTypes}
+
                         setValue={setValue}
                         className='mb-5 mb-xl-8'
-                        data={engineList}
+                        data={filterList}
                         setRefreshList={setRefreshList}
                         loading={isloading}
                         setTabIndex={setTabIndex}
@@ -141,6 +176,8 @@ const Engine = () => {
                       />
                     </KTCardBody>
                   </KTCard>
+              
+              
               </Tabs>
               <Toast
                 showToast={showToast}
@@ -155,10 +192,10 @@ const Engine = () => {
       </Route>
       <Route
         index
-        element={<Navigate to='/apps/engine-management/engine' />}
+        element={<Navigate to='/apps/vehicle-machine-management/vehiclemachine' />}
       />
     </Routes>
   );
 };
 
-export default Engine;
+export default EngineDetails;

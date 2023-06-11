@@ -9,6 +9,7 @@ import { EngineType } from '../../modules/apps/engine-management/types';
  */
 // export const getEngineType = async (jwt: string): Promise<IUser> => {
 export const getEngineType = async (
+  filterType:string,
   limit: number,
   offset: number
 ): Promise<IUser> => {
@@ -18,7 +19,7 @@ export const getEngineType = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}engineType/viewEngineType?limit=${limit}&offset=${offset}`,
+        url: `${'http://135.148.40.91:2000/api/'}engineType/viewEngineType?typeName=${filterType}&limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');

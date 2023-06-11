@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# steps to add new component
+add path in routes enum and constants and breadcrumbs
+add lazy component of this route in private routes 
+add that path in aside menu component and add this route in an array to enable the route
+also update path in new component
+
 ## Available Scripts
 
 In the project directory, you can run:

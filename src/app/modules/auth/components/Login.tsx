@@ -62,7 +62,7 @@ export function Login() {
           user:{
             adminRole:{
               privileges:[
-                'Fuel','Engine','Filters','VehicleMachine','Make','Model','Vehicle'
+                'Fuel','Engine','Filters','VehicleMachine','Make','Model','Vehicle','EngineDetails','Generator,Packages'
 
               ]
             }
@@ -73,7 +73,7 @@ export function Login() {
           user:{
             adminRole:{
               privileges:[
-                'Fuel','Engine','Filters','VehicleMachine','Make','Model','Vehicle'
+                'Fuel','Engine','Filters','VehicleMachine','Make','Model','Vehicle','EngineDetails','Generator','Packages'
 
               ]
             }

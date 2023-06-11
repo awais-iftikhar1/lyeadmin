@@ -34,13 +34,13 @@ const Error404: FC = () => {
         {/* end::Message */}
         {/* begin::Link */}
         <Link
-          to={`/${
-            privileges &&
-            (privileges[0] === 'dashbord'
-              ? 'dashbord'
-              : `${privileges[0]}-management/${privileges[0]}`)
-          }`}
-          // to={`/auth`}
+          // to={`/${
+          //   privileges &&
+          //   (privileges[0] === 'dashbord'
+          //     ? 'dashbord'
+          //     : `${privileges[0]}-management/${privileges[0]}`)
+          // }`}
+          to={`/auth`}
           className='btn btn-primary'
           onClick={()=>localStorage.clear()}
         >

@@ -7,7 +7,13 @@ export const routes = {
     vehiclemachine:'Vehicle Machine',
     make:"Make",
     model:"Model",
-    vehicle:"Vehicle"
+    vehicle:"Vehicle",
+    enginedetails:"Engine Detail",
+    generator:"Generator",
+    packages:"Packages",
+    OilDetails :"Oil Detail",
+    OilManfacture:'Oil Manufacture'
+
 }
 export const breadCrumbsData ={
     [ROUTES.engine] : [
@@ -94,6 +100,34 @@ export const breadCrumbsData ={
           isActive: false,
         },
       ],
+      [ROUTES.enginedetails] : [
+        {
+          title: 'Engine Management',
+          path: '/engine-detail-management/enginedetails',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
+      [ROUTES.OilDetails] : [
+        {
+          title: 'Oil Detail Management',
+          path: '/oilDetails-management/oilDetails',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
 }
 
 
@@ -131,5 +165,28 @@ export const status = [
   {
     label:'InValid',
     value:'InValid'
+  }
+]
+
+export const CheckStatus = [
+  {
+    label:'Yes',
+    value:'Yes'
+  },
+  {
+    label:'No',
+    value:'No'
+  }
+  
+]
+
+export const mileageType = [
+  {
+    label:'KM',
+    value:'KM'
+  },
+  {
+    label:'MILES',
+    value:'MILES'
   }
 ]

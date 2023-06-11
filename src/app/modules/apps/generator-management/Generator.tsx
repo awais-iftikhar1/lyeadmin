@@ -1,22 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { Route, Routes, Outlet, Navigate, useRoutes } from 'react-router-dom';
-import { PageLink, PageTitle } from '../../../../_metronic/layout/core';
-import { Tabs } from 'react-tabs';
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
+import {  PageTitle } from '../../../../_metronic/layout/core';
 import Pagination from 'rc-pagination';
 import { KTCard, KTCardBody } from '../../../../_metronic/helpers';
 import Toast from '../../components/Toast';
-import { EngineListing } from '../../../../_metronic/partials/widgets/tables/EngineListing';
-import { getEngineType } from '../../../api/engineType.ts';
+import { Tabs } from 'react-tabs';
+import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
 import { usePathName } from '../../../hook/usePathName';
-import { ROUTES } from '../../../utils/enum/routesEnum';
-import { breadCrumbsData, routes } from '../../../utils/constants';
+import { VehicleListing } from '../../../../_metronic/partials/widgets/tables/VehicleListing';
+import { viewVehicle } from '../../../api/Vehicle.ts';
+import { GeneratorListing } from '../../../../_metronic/partials/widgets/tables/GeneratorListing';
+import { viewGenerator } from '../../../api/Generator.ts';
 
 
-const Engine = () => {
-  const {route} = usePathName()
-  
-  const [engineList, setEngineList] = useState<string[]>([]);
+
+const Generator = () => {
+  const [filterList, setFilterList] = useState<string[]>([]);
   const [refreshList, setRefreshList] = useState<boolean>(false);
   const [isloading, setIsLoading] = useState<boolean>(false);
   const [stateMsg, setStateMsg] = useState<string>('');
@@ -24,11 +24,15 @@ const Engine = () => {
   const [boolState, setBoolState] = useState<string>('');
   const [tabIndex, setTabIndex] = useState(0);
   const [userCount, setUserCount] = useState<number>(0);
+
+
+  const [value, setValue] = useState('Vehicle');
+
+  const {route} = usePathName()
+
   const [perPage] = useState<number>(10);
   const [size, setSize] = useState<number>(perPage);
   const [current, setCurrent] = useState<number>(1);
-  const [value, setValue] = useState('Vehicle');
-
 
   const PerPageChange = (value: number) => {
     setSize(value);
@@ -41,7 +45,7 @@ const Engine = () => {
   const getData = (current: number, pageSize: number) => {
     // Normally you should get the data from the server
     // return data.slice((current - 1) * pageSize, current * pageSize);
-    return engineData(value,current, pageSize);
+    return filterData(current, pageSize);
   };
 
   const PaginationChange = (page: number, pageSize: number) => {
@@ -79,13 +83,13 @@ const Engine = () => {
     return originalElement;
   };
 
-  const engineData = async (filterType:string,pageSize: number, page: number) => {
+  const filterData = async (pageSize: number, page: number) => {
     setIsLoading(true);
     try {
-      const data = await getEngineType(filterType,pageSize, page - 1);
+      const data = await viewGenerator(pageSize, page - 1);
       console.log(data);
       
-      setEngineList(data?.data);
+      setFilterList(data?.data.rows);
       // setUserCount(data?.data.count);
     } catch (error) {
       console.log('Error', error);
@@ -97,31 +101,35 @@ const Engine = () => {
   };
 
 
+  
   useEffect(() => {
-    engineData(value,size, current);
+    filterData(size, current);
     setRefreshList(false);
-  }, [refreshList,value]);
+  }, [refreshList]);
+
+  console.log(value);
+  
 
   return (
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path='engine'
+          path='generator'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbsData.Engines}>{ROUTES[route as keyof typeof routes] }</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbsData.Vehicle}>{routes[route as keyof typeof routes] }</PageTitle>
 
               <Tabs
                 selectedTabClassName='btn-primary'
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
               >
-                  <KTCard>
+              
+                <KTCard>
                     <KTCardBody className='py-4'>
-                      <EngineListing
-                        setValue={setValue}
+                      <GeneratorListing
                         className='mb-5 mb-xl-8'
-                        data={engineList}
+                        data={filterList}
                         setRefreshList={setRefreshList}
                         loading={isloading}
                         setTabIndex={setTabIndex}
@@ -141,6 +149,8 @@ const Engine = () => {
                       />
                     </KTCardBody>
                   </KTCard>
+              
+              
               </Tabs>
               <Toast
                 showToast={showToast}
@@ -155,10 +165,10 @@ const Engine = () => {
       </Route>
       <Route
         index
-        element={<Navigate to='/apps/engine-management/engine' />}
+        element={<Navigate to='/apps/vehicle-machine-management/vehiclemachine' />}
       />
     </Routes>
   );
 };
 
-export default Engine;
+export default Generator;

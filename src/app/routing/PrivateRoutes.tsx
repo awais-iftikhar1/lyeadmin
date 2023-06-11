@@ -39,6 +39,15 @@ import('../modules/apps/vehicle-management/Vehicle')
 const Model = lazy(() =>
 import('../modules/apps/model-management/Model')
 );
+const EngineDetails = lazy(() =>
+import('../modules/apps/engine-details-management/EngineDetails')
+);
+const Generator = lazy(() =>
+import('../modules/apps/generator-management/Generator')
+);
+const OilDetails = lazy(() =>
+import('../modules/apps/oilDetails-management/OilDetails')
+);
   const Filters = lazy(() =>
   import('../modules/apps/filter-management/Filters')
   );
@@ -170,6 +179,30 @@ import('../modules/apps/model-management/Model')
           element={
             <SuspensedView>
               <Vehicle/>
+            </SuspensedView>
+          }
+        />
+              <Route
+          path='engine-detail-management/*'
+          element={
+            <SuspensedView>
+              <EngineDetails/>
+            </SuspensedView>
+          }
+        />
+           <Route
+          path='generator-management/*'
+          element={
+            <SuspensedView>
+              <Generator/>
+            </SuspensedView>
+          }
+        />
+          <Route
+          path='oilDetails-management/*'
+          element={
+            <SuspensedView>
+              <OilDetails/>
             </SuspensedView>
           }
         />

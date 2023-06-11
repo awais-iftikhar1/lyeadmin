@@ -17,7 +17,7 @@ export function AsideMenuMain() {
     (async () => {
       const { user } = await getLoginDetails();
       //todo
-     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle')
+     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -75,6 +75,27 @@ export function AsideMenuMain() {
         to='/vehicle-management/vehicle'
         icon='/media/icons/duotune/general/gen051.svg'
         title='Vehicle'
+        fontIcon='bi-layers'
+      />
+          <AsideMenuItem
+        isDisabled={privileges?.includes('enginedetails')}
+        to='/engine-detail-management/enginedetails'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Engine Detail'
+        fontIcon='bi-layers'
+      />
+         <AsideMenuItem
+        isDisabled={privileges?.includes('generator')}
+        to='/generator-management/generator'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Generator Detail'
+        fontIcon='bi-layers'
+      />
+        <AsideMenuItem
+        isDisabled={privileges?.includes('oil')}
+        to='/oilDetails-management/OilDetails'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Oil Detail'
         fontIcon='bi-layers'
       />
       <AsideMenuItem

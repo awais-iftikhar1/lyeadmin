@@ -1,70 +1,65 @@
 import React, { useState } from 'react';
 import { UsersListLoading } from '../../../../app/modules/apps/user-management/users-list/components/loading/UsersListLoading';
-import { deletePackages } from '../../../../app/api/delete/deletePackages';
 import { KTSVG } from '../../../helpers';
 import Toast from '../../../../app/modules/components/Toast';
 import moment from 'moment';
-import { ConfrimModal } from '../../../../app/modules/modals/confirmModal/confirmModal';
-import { deleteFuelType } from '../../../../app/api/fuelType.ts';
-import { EngineType } from '../../../../app/modules/apps/engine-management/types';
-import { deleteEngineType } from '../../../../app/api/engineType.ts';
-import { ROUTES } from '../../../../app/utils/enum/routesEnum';
-import { usePathName } from '../../../../app/hook/usePathName';
-import { routes, vehicleTypes } from '../../../../app/utils/constants';
 import { CustomModal } from '../../../layout/components/Modal';
-import EngineUpdate from '../../../../app/modules/apps/engine-management/engines/engine-add-edit';
-import EngineEdit from '../../../../app/modules/apps/engine-management/engines/engine-add-edit';
+import { ConfrimModal } from '../../../../app/modules/modals/confirmModal/confirmModal';
 import { SelectView } from '../../content/dropdown/SelectView';
 import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-privileges-list/rolesPrivilegesModel';
+import { routes } from '../../../../app/utils/constants';
+import { usePathName } from '../../../../app/hook/usePathName';
+import { deleteMake } from '../../../../app/api/Make.ts';
+import VehicleAddEdit from '../../../../app/modules/apps/vehicle-management/Vehicle/vehicle-add-edit';
+import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
+import EngineDetailsAddEdit from '../../../../app/modules/apps/engine-details-management/EngineDetails/engine-details-add-edit';
 type Props = {
   className: string;
   loading: boolean;
   setRefreshList: Function;
   setTabIndex: Function;
   data?: any;
-  setValue: React.Dispatch<React.SetStateAction<string>>,
-
+  setValue: React.Dispatch<React.SetStateAction<any>>,
+  filterDropDownData:any
 };
 
-const EngineListing: React.FC<Props> = ({
+const EngineDetailListing: React.FC<Props> = ({
   className,
   loading,
   setRefreshList,
   setTabIndex,
   data,
-  setValue
+  setValue,
+  filterDropDownData
 }) => {
-  const {route} = usePathName()
-
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<EngineType|null>(null);
+  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
   const [itemId, setItemId] = useState<string>();
 
   const [isloading, setIsLoading] = useState<boolean>(false);
+  const {route} = usePathName()
 
   const [showToast, setShowToast] = useState<boolean>(false);
   const [boolState, setBoolState] = useState<string>('');
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<IOptionValue>();
-
-  const EngineDetail = async (data: EngineType|null) => {    
+  const itemDetail = async (data: VehicleType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);
     } catch (error) {
-      console.log('editPackage Error', error);
+      console.log('edit item Error', error);
     }
   };
 
-
-
-  const deletePackageHandler = async () => {
+ 
+  const deleteItemHandler = async () => {
     if(!itemId) return
     setIsLoading(true);
     try {
-      const data = await deleteEngineType(itemId);
+      const data = await deleteMake(itemId);
       console.log(data);
       
       setRefreshList(true);
@@ -82,7 +77,7 @@ const EngineListing: React.FC<Props> = ({
   const SuccessEdit = () => {
     setBoolState('success');
     setShowToast(true);
-    setStateMsg('Your packages has been edited successfully.');
+    setStateMsg('Your Vehicle has been edited successfully.');
   };
 
   const FailedEdit = async (error: string) => {
@@ -90,6 +85,8 @@ const EngineListing: React.FC<Props> = ({
     setBoolState('fail');
     setShowToast(true);
   };
+
+console.log(data);
 
   return (
     <>
@@ -106,7 +103,7 @@ const EngineListing: React.FC<Props> = ({
             <SelectView
                   
                   addClass={`dropdown--input card-title mb-0`}
-                  data={vehicleTypes}
+                  data={filterDropDownData}
                   placeholder='Select Type...'
                   valueCallback={setValue}
                   optionCallback={setSelectedValue}
@@ -116,13 +113,15 @@ const EngineListing: React.FC<Props> = ({
               type={'button'}
               className='btn btn-success me-2'
               onClick={() => {
-                EngineDetail(null);
+                itemDetail(null);
               }}
             >
               Add {routes[route as keyof typeof routes] } Type
+
             </button>
+           
             </div>
-            
+                 
           </div>
           {/* end::Header */}
           {/* begin::Body */}
@@ -134,8 +133,8 @@ const EngineListing: React.FC<Props> = ({
                 {/* begin::Table head */}
                 <thead>
                   <tr className='fw-bold text-muted bg-light'>
-                    <th className='ps-4 min-w-150px rounded-start'>Engine Type</th>
-                    <th className='min-w-150'>No of Cylinders</th>
+                    <th className='ps-4 min-w-150px rounded-start'>Make Name</th>
+                    <th className='ps-4 min-w-200px rounded-start'>Type</th>
                     <th className='min-w-150'>Status</th>
                     <th className='min-w-200px'>Created At</th>
                     <th className='min-w-200px'>Updated At</th>                 
@@ -162,22 +161,25 @@ const EngineListing: React.FC<Props> = ({
                           <UsersListLoading />
                         </tr>
                       )}
-                      {data?.map((item: any, index: number) => (
+                      {data && data?.map((item: any, index: number) => (
                         <tr key={index}>
                           <td className='ps-4'>
                             <div className='d-flex align-items-center'>
                               <div className='d-flex justify-content-start flex-column'>
                                 <p className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                                   {item.typeName}
+                                {item.make.makeName}
                                 </p>
                               </div>
                             </div>
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                                {item.noOfCylinders}
+                            {item.type}
                             </p>
                           </td>
+                          
+                      
+                        
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                                 {item.status === 1 ? 'Active':'Not active'}
@@ -185,15 +187,15 @@ const EngineListing: React.FC<Props> = ({
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.created_at).format(
-                                'DD-MMM-YYYY, HH:mm:ss'
+                              {moment(item.createdAt).format(
+                                'DD-MMM-YYYY'
                               )}
                             </p>
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.updated_at).format(
-                                'DD-MMM-YYYY, HH:mm:ss'
+                              {moment(item.updatedAt).format(
+                                'DD-MMM-YYYY'
                               )}
                             </p>
                           </td>
@@ -207,7 +209,7 @@ const EngineListing: React.FC<Props> = ({
                                 data-bs-toggle='modal'
                                 data-bs-target='#kt_modal_create_app'
                                 onClick={() => {
-                                  EngineDetail(item);
+                                  itemDetail(item);
                                 }}
                               >
                                 <KTSVG
@@ -248,40 +250,32 @@ const EngineListing: React.FC<Props> = ({
       </div>
       <CustomModal
         show={showCreateAppModal}
-        data={listDetails}
         handleClose={() => setShowCreateAppModal(false)}
-        >
-      <EngineEdit
-           data={listDetails}
-           heading={false}
-           setApiError={setApiError}
-           setRefreshList={setRefreshList}
-           SuccessFunction={SuccessEdit}
-           FailFunction={FailedEdit}
-           setTabIndex={setTabIndex}
-           handleClose={() => setShowCreateAppModal(false)}
+        data={listDetails}
+
+      >
+        <EngineDetailsAddEdit
+        filterDropDownData={filterDropDownData}
+        heading={false}
+         data={listDetails}
+         setApiError={setApiError}
+         setRefreshList={setRefreshList}
+         SuccessFunction={SuccessEdit}
+         FailFunction={FailedEdit}
+         setTabIndex={setTabIndex}
+         handleClose={() => setShowCreateAppModal(false)}
         />
       </CustomModal>
-      {/* <PackageEditModal
-        show={showCreateAppModal}
-        data={listDetails}
-        setApiError={setApiError}
-        setRefreshList={setRefreshList}
-        SuccessFunction={SuccessEdit}
-        FailFunction={FailedEdit}
-        setTabIndex={setTabIndex}
-        handleClose={() => setShowCreateAppModal(false)}
-      /> */}
 
 
       <ConfrimModal
         show={showConfirmModal}
-        confirmProcess={deletePackageHandler}
-        modalTitle={'Delete Engine'}
+        confirmProcess={deleteItemHandler}
+        modalTitle={'Delete Make'}
         handleClose={() => setShowConfrimModal(false)}
       />
     </>
   );
 };
 
-export { EngineListing };
+export { EngineDetailListing };
