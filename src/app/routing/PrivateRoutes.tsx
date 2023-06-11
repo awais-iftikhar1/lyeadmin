@@ -57,6 +57,9 @@ import('../modules/apps/oilDetails-management/OilDetails')
   const Filters = lazy(() =>
   import('../modules/apps/filter-management/Filters')
   );
+  const BusinessDetail = lazy(() =>
+  import('../modules/apps/business-management/BusinessDetails')
+  );
   const LotteryPage = lazy(() =>
     import('../modules/apps/lottery-management/LotteryPage')
   );
@@ -161,6 +164,14 @@ import('../modules/apps/oilDetails-management/OilDetails')
           element={
             <SuspensedView>
               <Engine/>
+            </SuspensedView>
+          }
+        />
+           <Route
+          path='business-management/*'
+          element={
+            <SuspensedView>
+              <BusinessDetail/>
             </SuspensedView>
           }
         />

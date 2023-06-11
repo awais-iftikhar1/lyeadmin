@@ -17,7 +17,7 @@ export function AsideMenuMain() {
     (async () => {
       const { user } = await getLoginDetails();
       //todo
-     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil','year','color')
+     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil','year','color','business')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -131,6 +131,13 @@ export function AsideMenuMain() {
         to='/color-management/color'
         icon='/media/icons/duotune/general/gen051.svg'
         title='Colors'
+        fontIcon='bi-layers'
+      />
+       <AsideMenuItem
+        isDisabled={privileges?.includes('business')}
+        to='/business-management/business'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Business Detail'
         fontIcon='bi-layers'
       />
       <AsideMenuItem

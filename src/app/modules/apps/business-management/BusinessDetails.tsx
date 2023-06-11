@@ -5,21 +5,19 @@ import {  PageTitle } from '../../../../_metronic/layout/core';
 import Pagination from 'rc-pagination';
 import { KTCard, KTCardBody } from '../../../../_metronic/helpers';
 import Toast from '../../components/Toast';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
-import { usePathName } from '../../../hook/usePathName';
-import { VehicleListing } from '../../../../_metronic/partials/widgets/tables/VehicleListing';
-import { viewVehicle } from '../../../api/Vehicle.ts';
-import { GeneratorListing } from '../../../../_metronic/partials/widgets/tables/GeneratorListing';
-import { viewGenerator } from '../../../api/Generator.ts';
-import { OilDetailsListing } from '../../../../_metronic/partials/widgets/tables/OilDetailsListing';
-import { OilManufactureListing } from '../../../../_metronic/partials/widgets/tables/OilManufactureListing';
 import { viewOilGrade, viewOilManufacture } from '../../../api/Oil';
-import { OilGradeListing } from '../../../../_metronic/partials/widgets/tables/OilGradeListing';
+import { YearListing } from '../../../../_metronic/partials/widgets/tables/YearListing';
+import { viewYear } from '../../../api/Year';
+import { breadCrumbsData, routes } from '../../../utils/constants';
+import { usePathName } from '../../../hook/usePathName';
+import { ColorListing } from '../../../../_metronic/partials/widgets/tables/ColorListing';
+import { getColour } from '../../../api/Colors';
+import { BusinessDetailListing } from '../../../../_metronic/partials/widgets/tables/BusinessDetailListing';
+import { viewBusinessType } from '../../../api/Business';
 
 
 
-const OilGrade = () => {
+const BusinessDetail = () => {
   const [filterList, setFilterList] = useState<string[]>([]);
   const [refreshList, setRefreshList] = useState<boolean>(false);
   const [isloading, setIsLoading] = useState<boolean>(false);
@@ -28,6 +26,7 @@ const OilGrade = () => {
   const [boolState, setBoolState] = useState<string>('');
   const [tabIndex, setTabIndex] = useState(0);
   const [userCount, setUserCount] = useState<number>(0);
+  const {route} = usePathName()
 
   const [perPage] = useState<number>(10);
   const [size, setSize] = useState<number>(perPage);
@@ -85,7 +84,7 @@ const OilGrade = () => {
   const filterData = async (pageSize: number, page: number) => {
     setIsLoading(true);
     try {
-      const data = await viewOilGrade();
+      const data = await viewBusinessType();
       console.log(data);
       
       setFilterList(data?.data);
@@ -107,44 +106,60 @@ const OilGrade = () => {
   }, [refreshList]);
 
   return (
-    <>
+    <Routes>
+    <Route element={<Outlet />}>
+      <Route
+        path='business'
+        element={
+          <>
           
-              
-    {/* oil details tab */}
-      <KTCard>
-          <KTCardBody className='py-4'>
-            <OilGradeListing
-              className='mb-5 mb-xl-8'
-              data={filterList}
-              setRefreshList={setRefreshList}
-              loading={isloading}
-              setTabIndex={setTabIndex}
+            <PageTitle breadcrumbs={breadCrumbsData['Business Type']}>{routes[route as keyof typeof routes] }</PageTitle>
+
+      
+
+            
+              <KTCard>
+                  <KTCardBody className='py-4'>
+                    <BusinessDetailListing
+                      className='mb-5 mb-xl-8'
+                      data={filterList}
+                      setRefreshList={setRefreshList}
+                      loading={isloading}
+                      setTabIndex={setTabIndex}
+                    />
+                    <Pagination
+                      className='pagination pt-10'
+                      showTotal={(total, range) =>
+                        `Showing ${range[0]}-${range[1]} of ${total}`
+                      }
+                      onChange={PaginationChange}
+                      total={userCount}
+                      current={current}
+                      pageSize={size}
+                      showSizeChanger={false}
+                      itemRender={pageItems}
+                      onShowSizeChange={PerPageChange}
+                    />
+                  </KTCardBody>
+                </KTCard>
+            
+            <Toast
+              showToast={showToast}
+              state={boolState}
+              setShowToast={setShowToast}
+              message={stateMsg}
             />
-            <Pagination
-              className='pagination pt-10'
-              showTotal={(total, range) =>
-                `Showing ${range[0]}-${range[1]} of ${total}`
-              }
-              onChange={PaginationChange}
-              total={userCount}
-              current={current}
-              pageSize={size}
-              showSizeChanger={false}
-              itemRender={pageItems}
-              onShowSizeChange={PerPageChange}
-            />
-          </KTCardBody>
-        </KTCard>
-    
-    
-     <Toast
-      showToast={showToast}
-      state={boolState}
-      setShowToast={setShowToast}
-      message={stateMsg}
+          </>
+          
+        }
+      />
+    </Route>
+    <Route
+      index
+      element={<Navigate to='/apps/business-management/business' />}
     />
-  </>
+  </Routes>
   );
 };
 
-export default OilGrade;
+export default BusinessDetail;

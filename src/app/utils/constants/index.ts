@@ -14,7 +14,9 @@ export const routes = {
     OilDetails :"Oil Detail",
     OilManfacture:'Oil Manufacture',
     year:'Year',
-    color:'Color'
+    color:'Color',
+    business:'Business Type'
+
 
 
 
@@ -150,6 +152,20 @@ export const breadCrumbsData ={
         {
           title: 'Color Management',
           path: '/color-management/color',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
+      [ROUTES.business] : [
+        {
+          title: 'Business Management',
+          path: '/business-management/business',
           isSeparator: false,
           isActive: false,
         },

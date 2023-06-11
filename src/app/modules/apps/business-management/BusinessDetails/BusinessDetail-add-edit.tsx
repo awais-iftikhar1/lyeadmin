@@ -9,12 +9,12 @@ import FileInput from '../../../../../_metronic/layout/components/FileInput';
 import styled from 'styled-components';
 import { addVehicle, editVehicle, viewColor, viewMake, viewModel, viewVehicleType, viewYear } from '../../../../api/Vehicle.ts';
 import { addGenerator, editGenerator, viewFuelSystem, viewFuelUsed } from '../../../../api/Generator.ts';
-import { addOilGrade, addOilManufacture, editOilGrade, editOilManufacture } from '../../../../api/Oil';
 import { ROUTES } from '../../../../utils/enum/routesEnum';
-import { OilGrade } from '../types';
+import { BusinessDataType } from '../types';
+import { addBusinessType, editBusinessType } from '../../../../api/Business';
 
 type Props = {
-  data: OilGrade | null | any;
+  data: BusinessDataType | null | any;
   heading: boolean;
   setTabIndex: Function;
   setApiError: Function;
@@ -25,9 +25,9 @@ type Props = {
 
 };
 
-const OilGradeAddEdit = ({
+const BusinessDetailAddEdit = ({
   heading,
-  data:oilManifactureData,
+  data:businessTypeData,
   setTabIndex,
   setApiError,
   handleClose,
@@ -37,27 +37,27 @@ const OilGradeAddEdit = ({
 }: Props) => {
   const { route } = usePathName()
   const editPackageSchema = Yup.object().shape({
-    oilGrade: Yup.string()
-    .required('oilGrade is required'),
+    type: Yup.string()
+    .required('type is required'),
   });
   
 
   const initialValues = {
-    oilGrade: oilManifactureData?.oilGrade,
+    type: businessTypeData?.type,
   };
-  const tabName = ROUTES.OilGrade
+  const tabName = ROUTES.business
 
   const [loading, setLoading] = useState<boolean>(false);
   const [actionType, setActionType] = useState('edit')
 
 
   useEffect(() => {
-    if (!oilManifactureData) {
+    if (!businessTypeData) {
       setActionType('add')
     }
-  }, [oilManifactureData])
+  }, [businessTypeData])
 
-  const formik = useFormik<OilGrade>({
+  const formik = useFormik<BusinessDataType>({
     initialValues,
     validationSchema: editPackageSchema,
     onSubmit: (values, { resetForm }) => {
@@ -74,18 +74,18 @@ const OilGradeAddEdit = ({
 
 
 
-  const editPackagesHandler = async (formData: OilGrade) => {
+  const editPackagesHandler = async (formData: BusinessDataType) => {
     console.log(formData);
     try {
       debugger
       if (actionType === 'edit') {
         const updData = {
-          id: oilManifactureData?.id,
+          id: businessTypeData?.id,
           ...formData
         }
-        await editOilGrade(updData);
+        await editBusinessType(updData);
       } else {
-        await addOilGrade(
+        await addBusinessType(
           { ...formData }
         );
       }
@@ -133,15 +133,15 @@ const OilGradeAddEdit = ({
                   type='text'
                   className='form-control form-control-lg form-control-solid pe-12'
                   placeholder='Enter Name'
-                  name='oilGrade'
-                  value={formik.values.oilGrade}
+                  name='type'
+                  value={formik.values.type}
                   onChange={(event) => {
                     formik.handleChange(event);
                   }}
                 />
-                {formik.touched.oilGrade && formik.errors.oilGrade && (
+                {formik.touched.type && formik.errors.type && (
                   <div className='fv-plugins-message-container'>
-                    <div className='fv-help-block'>{formik.errors.oilGrade}</div>
+                    <div className='fv-help-block'>{formik.errors.type}</div>
                   </div>
                 )}
               </div>
@@ -153,7 +153,7 @@ const OilGradeAddEdit = ({
                 type='submit'
                 className='btn btn-primary'
               >
-                {!loading && (oilManifactureData ? `Edit ${tabName}` : `Add ${tabName}`)}
+                {!loading && (businessTypeData ? `Edit ${tabName}` : `Add ${tabName}`)}
                 {loading && (
                   <span
                     className='indicator-progress'
@@ -176,4 +176,4 @@ const OilGradeAddEdit = ({
 const Flex = styled.div`
 display:flex
 `
-export default OilGradeAddEdit;
+export default BusinessDetailAddEdit;
