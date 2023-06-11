@@ -12,7 +12,11 @@ export const routes = {
     generator:"Generator",
     packages:"Packages",
     OilDetails :"Oil Detail",
-    OilManfacture:'Oil Manufacture'
+    OilManfacture:'Oil Manufacture',
+    year:'Year',
+    color:'Color'
+
+
 
 }
 export const breadCrumbsData ={
@@ -118,6 +122,34 @@ export const breadCrumbsData ={
         {
           title: 'Oil Detail Management',
           path: '/oilDetails-management/oilDetails',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
+      [ROUTES.year] : [
+        {
+          title: 'Year Management',
+          path: '/year-management/year',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
+      [ROUTES.color] : [
+        {
+          title: 'Color Management',
+          path: '/color-management/color',
           isSeparator: false,
           isActive: false,
         },

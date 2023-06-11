@@ -30,6 +30,12 @@ const PrivateRoutes = () => {
 const VehicleMachine = lazy(() =>
 import('../modules/apps/vehicle-machine-management/VehicleMachine')
 );
+const YearDetails = lazy(() =>
+import('../modules/apps/year-management/YearDetails')
+);
+const ColorDetails = lazy(() =>
+import('../modules/apps/color-management/colorDetails')
+);
 const Make = lazy(() =>
 import('../modules/apps/make-management/Make')
 );
@@ -227,6 +233,22 @@ import('../modules/apps/oilDetails-management/OilDetails')
           element={
             <SuspensedView>
               <PackagesPage />
+            </SuspensedView>
+          }
+        />
+          <Route
+          path='year-management/*'
+          element={
+            <SuspensedView>
+              <YearDetails />
+            </SuspensedView>
+          }
+        />
+            <Route
+          path='color-management/*'
+          element={
+            <SuspensedView>
+              <ColorDetails />
             </SuspensedView>
           }
         />

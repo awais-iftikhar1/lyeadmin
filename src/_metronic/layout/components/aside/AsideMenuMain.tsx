@@ -17,7 +17,7 @@ export function AsideMenuMain() {
     (async () => {
       const { user } = await getLoginDetails();
       //todo
-     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil')
+     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil','year','color')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -117,6 +117,20 @@ export function AsideMenuMain() {
         to='/packages-management/packages'
         icon='/media/icons/duotune/general/gen051.svg'
         title='Packages'
+        fontIcon='bi-layers'
+      />
+      <AsideMenuItem
+        isDisabled={privileges?.includes('year')}
+        to='/year-management/year'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Year'
+        fontIcon='bi-layers'
+      />
+      <AsideMenuItem
+        isDisabled={privileges?.includes('color')}
+        to='/color-management/color'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Colors'
         fontIcon='bi-layers'
       />
       <AsideMenuItem

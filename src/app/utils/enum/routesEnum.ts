@@ -13,6 +13,8 @@ export enum ROUTES {
     OilManfacture='Oil Manufacture',
     OilType='Oil Type',
     OilGrade = 'Oil Grade',
-    OilEngineType='Oil Engine Type'
+    OilEngineType='Oil Engine Type',
+    year='Year',
+    color='Color'
 
 }   
