@@ -2,7 +2,7 @@ import { ROUTES } from "../enum/routesEnum"
 
 export const routes = {
     engine:'Engine',
-    fuels: 'Feuls',
+    fuel: 'Feuls',
     filters: 'Filters',
     vehiclemachine:'Vehicle Machine',
     make:"Make",
@@ -15,7 +15,8 @@ export const routes = {
     OilManfacture:'Oil Manufacture',
     year:'Year',
     color:'Color',
-    business:'Business Type'
+    business:'Business Type',
+    testLocation :'Test Location'
 
 
 
@@ -36,7 +37,7 @@ export const breadCrumbsData ={
           isActive: false,
         },
       ],
-      [ROUTES.fuels] : [
+      [ROUTES.fuel] : [
         {
           title: 'Fuels Management',
           path: '/fuel-management/fuels',
@@ -166,6 +167,20 @@ export const breadCrumbsData ={
         {
           title: 'Business Management',
           path: '/business-management/business',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
+      [ROUTES.testLocation] : [
+        {
+          title: 'Test Location Management',
+          path: '/test-location-management/testLocation',
           isSeparator: false,
           isActive: false,
         },

@@ -101,7 +101,7 @@ export function Login() {
     >
       {/* begin::Heading */}
       <div className='text-center mb-10'>
-        <h1 className='text-dark mb-3'>Sign In to Valantis</h1>
+        <h1 className='text-dark mb-3'>Sign In to Love Your Engine</h1>
       </div>
       {/* begin::Heading */}
 

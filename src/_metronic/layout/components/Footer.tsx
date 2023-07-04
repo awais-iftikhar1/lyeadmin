@@ -14,7 +14,7 @@ const Footer: FC = () => {
           <span className='text-muted fw-bold me-2'>
             {new Date().getFullYear()} &copy;
           </span>
-          <p className='text-gray-800 text-hover-primary'>valantis</p>
+          <p className='text-gray-800 text-hover-primary'>Love Your Engine</p>
         </div>
         {/* end::Copyright */}
       </div>

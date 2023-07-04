@@ -17,7 +17,8 @@ export function AsideMenuMain() {
     (async () => {
       const { user } = await getLoginDetails();
       //todo
-     user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil','year','color','business')
+    //  user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil','year','color','business')
+    user?.adminRole?.privileges.push('Fuel','Engines','Filters','VehicleMachine','Make','Model','Vehicle','Generator','oil','year','color','business','testLocation')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -28,13 +29,13 @@ export function AsideMenuMain() {
 
   return (
     <>
-      <AsideMenuItem
+      {/* <AsideMenuItem
         isDisabled={privileges?.includes('dashboard')}
         to='/dashboard'
         icon='/media/icons/duotune/art/art002.svg'
         title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
-      />
+      /> */}
       <AsideMenuItem
         isDisabled={privileges?.includes('user')}
         to='/user-management/user'
@@ -43,8 +44,8 @@ export function AsideMenuMain() {
         fontIcon='bi-layers'
       />
         <AsideMenuItem
-        isDisabled={privileges?.includes('fuels')}
-        to='/fuel-management/fuels'
+        isDisabled={privileges?.includes('fuel')}
+        to='/fuel-management/fuel'
         icon='/media/icons/duotune/general/gen051.svg'
         title='fuel'
         fontIcon='bi-layers'
@@ -140,7 +141,14 @@ export function AsideMenuMain() {
         title='Business Detail'
         fontIcon='bi-layers'
       />
-      <AsideMenuItem
+        <AsideMenuItem
+        isDisabled={privileges?.includes('testlocation')}
+        to='/test-location-management/testLocation'
+        icon='/media/icons/duotune/general/gen051.svg'
+        title='Test Location Detail'
+        fontIcon='bi-layers'
+      />
+      {/* <AsideMenuItem
         isDisabled={privileges?.includes('lottery')}
         to='/lottery-management/lottery'
         icon='/media/icons/duotune/general/gen051.svg'
@@ -167,7 +175,7 @@ export function AsideMenuMain() {
         icon='/media/icons/duotune/general/gen051.svg'
         title='Wallets'
         fontIcon='bi-layers'
-      />
+      /> */}
     </>
   );
 }

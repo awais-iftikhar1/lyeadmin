@@ -1,6 +1,6 @@
 export enum ROUTES {
     engine='Engines',
-    fuels= 'Feuls',
+    fuel= 'Feuls',
     filters= 'Filters',
     vehiclemachine='Vehicle Machine',
     make="Make",
@@ -16,5 +16,6 @@ export enum ROUTES {
     OilEngineType='Oil Engine Type',
     year='Year',
     color='Color',
-    business= 'Business Type'
+    business= 'Business Type',
+    testLocation = 'Test Location'
 }   

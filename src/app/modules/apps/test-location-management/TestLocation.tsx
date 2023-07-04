@@ -1,22 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
-import { PageLink, PageTitle } from '../../../../_metronic/layout/core';
-import { Tabs } from 'react-tabs';
+import {  PageTitle } from '../../../../_metronic/layout/core';
 import Pagination from 'rc-pagination';
 import { KTCard, KTCardBody } from '../../../../_metronic/helpers';
-import { FuelListing } from '../../../../_metronic/partials/widgets/tables/FuelListing';
-import { getFuelType } from '../../../api/get/getFuelType';
 import Toast from '../../components/Toast';
-import { ROUTES } from '../../../utils/enum/routesEnum';
+import { Tabs } from 'react-tabs';
+import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
 import { usePathName } from '../../../hook/usePathName';
-import { breadCrumbsData, routes } from '../../../utils/constants';
+import { TestLocationListing } from '../../../../_metronic/partials/widgets/tables/TestLocationListing';
+import { viewTestLocation } from '../../../api/Oil';
 
 
-const FuelsPage = () => {
-  const {route} = usePathName()
 
-  const [fuelsList, setFuelsList] = useState<string[]>([]);
+const TestLocation = () => {
+  const [filterList, setFilterList] = useState<string[]>([]);
   const [refreshList, setRefreshList] = useState<boolean>(false);
   const [isloading, setIsLoading] = useState<boolean>(false);
   const [stateMsg, setStateMsg] = useState<string>('');
@@ -24,6 +22,11 @@ const FuelsPage = () => {
   const [boolState, setBoolState] = useState<string>('');
   const [tabIndex, setTabIndex] = useState(0);
   const [userCount, setUserCount] = useState<number>(0);
+
+
+  const [value, setValue] = useState('Vehicle');
+
+  const {route} = usePathName()
 
   const [perPage] = useState<number>(10);
   const [size, setSize] = useState<number>(perPage);
@@ -40,7 +43,7 @@ const FuelsPage = () => {
   const getData = (current: number, pageSize: number) => {
     // Normally you should get the data from the server
     // return data.slice((current - 1) * pageSize, current * pageSize);
-    return fuelsData(current, pageSize);
+    return filterData(current, pageSize);
   };
 
   const PaginationChange = (page: number, pageSize: number) => {
@@ -78,13 +81,13 @@ const FuelsPage = () => {
     return originalElement;
   };
 
-  const fuelsData = async (pageSize: number, page: number) => {
+  const filterData = async (pageSize: number, page: number) => {
     setIsLoading(true);
     try {
-      const data = await getFuelType(pageSize, page - 1);
+      const data = await viewTestLocation();
       console.log(data);
       
-      setFuelsList(data?.data);
+      setFilterList(data?.data);
       // setUserCount(data?.data.count);
     } catch (error) {
       console.log('Error', error);
@@ -95,30 +98,36 @@ const FuelsPage = () => {
     setIsLoading(false);
   };
 
+
+  
   useEffect(() => {
-    fuelsData(size, current);
+    filterData(size, current);
     setRefreshList(false);
   }, [refreshList]);
+
+  console.log(value);
+  
 
   return (
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path='fuel'
+          path='testLocation'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbsData.Feuls}>{ROUTES[route as keyof typeof routes] }</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbsData['Test Location']}>{routes[route as keyof typeof routes] }</PageTitle>
 
               <Tabs
                 selectedTabClassName='btn-primary'
                 selectedIndex={tabIndex}
                 onSelect={(index) => setTabIndex(index)}
               >
-                  <KTCard>
+              
+                <KTCard>
                     <KTCardBody className='py-4'>
-                      <FuelListing
+                      <TestLocationListing
                         className='mb-5 mb-xl-8'
-                        data={fuelsList}
+                        data={filterList}
                         setRefreshList={setRefreshList}
                         loading={isloading}
                         setTabIndex={setTabIndex}
@@ -138,6 +147,8 @@ const FuelsPage = () => {
                       />
                     </KTCardBody>
                   </KTCard>
+              
+              
               </Tabs>
               <Toast
                 showToast={showToast}
@@ -152,10 +163,10 @@ const FuelsPage = () => {
       </Route>
       <Route
         index
-        element={<Navigate to='/apps/fuel-management/fuel' />}
+        element={<Navigate to='/apps/test-location-management/testlocation' />}
       />
     </Routes>
   );
 };
 
-export default FuelsPage;
+export default TestLocation;

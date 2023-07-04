@@ -48,6 +48,9 @@ import('../modules/apps/model-management/Model')
 const EngineDetails = lazy(() =>
 import('../modules/apps/engine-details-management/EngineDetails')
 );
+const TestLocation = lazy(() =>
+import('../modules/apps/test-location-management/TestLocation')
+);
 const Generator = lazy(() =>
 import('../modules/apps/generator-management/Generator')
 );
@@ -180,6 +183,14 @@ import('../modules/apps/oilDetails-management/OilDetails')
           element={
             <SuspensedView>
               <VehicleMachine/>
+            </SuspensedView>
+          }
+        />
+           <Route
+          path='test-location-management/*'
+          element={
+            <SuspensedView>
+              <TestLocation/>
             </SuspensedView>
           }
         />
