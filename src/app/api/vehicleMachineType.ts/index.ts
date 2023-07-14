@@ -17,7 +17,7 @@ export const getVehicleMachineType = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}vehicleMachineType/viewVehicleMachineType?type=${filterType}&limit=${limit}&offset=${offset}`,
+        url: `${API_URL}vehicleMachineType/viewVehicleMachineType?type=${filterType}&limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       resolve({
@@ -42,7 +42,7 @@ export const addVehicleMachineType = async (data:VehicleType): Promise<IUser> =>
           ...data,
           typeName : data.vehicleType,
          },
-          url: `${'http://135.148.40.91:2000/api/'}vehicleMachineType/addVehicleType`,
+          url: `${API_URL}vehicleMachineType/addVehicleType`,
           method: 'POST',
         });
         resolve({
@@ -68,7 +68,7 @@ export const addVehicleMachineType = async (data:VehicleType): Promise<IUser> =>
             typeName : data.vehicleType,
             type: data.type
          },
-          url: `${'http://135.148.40.91:2000/api/'}vehicleMachineType/editVehicleType`,
+          url: `${API_URL}vehicleMachineType/editVehicleType`,
           method: 'POST',
         });
         resolve({
@@ -92,7 +92,7 @@ export const addVehicleMachineType = async (data:VehicleType): Promise<IUser> =>
          data:{
           vehicleTypeId:id
         },
-          url: `${'http://135.148.40.91:2000/api/'}vehicleMachineType/deleteVehicleType`,
+          url: `${API_URL}vehicleMachineType/deleteVehicleType`,
           method: 'POST',
         });
         resolve({

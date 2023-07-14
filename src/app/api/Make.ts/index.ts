@@ -16,7 +16,7 @@ export const getMake = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}make/getMake?type=${filterType}&limit=${limit}&offset=${offset}`,
+        url: `${API_URL}make/getMake?type=${filterType}&limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       resolve({
@@ -40,7 +40,7 @@ export const addMake = async (data:MakeType): Promise<IUser> => {
          data :{
           ...data,
          },
-          url: `${'http://135.148.40.91:2000/api/'}make/addMake`,
+          url: `${API_URL}make/addMake`,
           method: 'POST',
         });
         resolve({
@@ -66,7 +66,7 @@ export const addMake = async (data:MakeType): Promise<IUser> => {
             ...data
             
          },
-          url: `${'http://135.148.40.91:2000/api/'}make/editMake`,
+          url: `${API_URL}make/editMake`,
           method: 'POST',
         });
         resolve({
@@ -88,7 +88,7 @@ export const addMake = async (data:MakeType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}make/deleteMake`,
+          url: `${API_URL}make/deleteMake`,
           method: 'POST',
         });
         resolve({

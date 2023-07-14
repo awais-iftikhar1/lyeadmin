@@ -17,7 +17,7 @@ export const getFuelType = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}fuelType/viewFuelType?limit=${limit}&offset=${offset}`,
+        url: `${API_URL}fuelType/viewFuelType?limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');

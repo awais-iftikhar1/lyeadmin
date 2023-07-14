@@ -13,7 +13,7 @@ export const viewFilter = async (
 
     try {
       const { data } = await Axios({
-        url: `${'http://135.148.40.91:2000/api/'}engineDetails/viewFilter?filterTypeId=${filterTypeId}`,
+        url: `${API_URL}engineDetails/viewFilter?filterTypeId=${filterTypeId}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -35,7 +35,7 @@ export const viewFuelType = async (): Promise<IUser> => {
 
     try {
       const { data } = await Axios({
-        url: `${'http://135.148.40.91:2000/api/'}engineDetails/viewFuelType`,
+        url: `${API_URL}engineDetails/viewFuelType`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -56,7 +56,7 @@ export const viewEngineServiceFreq = async (): Promise<IUser> => {
 
     try {
       const { data } = await Axios({
-        url: `${'http://135.148.40.91:2000/api/'}engineDetails/viewEngineServiceFreq`,
+        url: `${API_URL}engineDetails/viewEngineServiceFreq`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -79,7 +79,7 @@ export const viewEngineType = async (filterType:string): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}engineDetails/viewEngineType?typeName=${filterType}`,
+        url: `${API_URL}engineDetails/viewEngineType?typeName=${filterType}`,
         method: 'GET',
       });
       resolve({
@@ -102,7 +102,7 @@ export const viewMake = async (filterType:string): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}vehicle/viewMake?type=${filterType}`,
+        url: `${API_URL}vehicle/viewMake?type=${filterType}`,
         method: 'GET',
       });
       resolve({
@@ -126,7 +126,7 @@ export const viewVehicleType = async (filterType:string): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}vehicle/viewVehicleType?type=${filterType}`,
+        url: `${API_URL}vehicle/viewVehicleType?type=${filterType}`,
         method: 'GET',
       });
       resolve({
@@ -148,7 +148,7 @@ export const viewModel = async (filterType:string): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}vehicle/viewModel?makeId=${filterType}`,
+        url: `${API_URL}vehicle/viewModel?makeId=${filterType}`,
         method: 'GET',
       });
       resolve({
@@ -171,7 +171,7 @@ export const viewVehicle = async (filterType:string,pageSize:number,page:number)
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}vehicle/viewVehicle?type=${filterType}&page=${page}&pageSize=${pageSize}`,
+        url: `${API_URL}vehicle/viewVehicle?type=${filterType}&page=${page}&pageSize=${pageSize}`,
         method: 'GET',
       });
       resolve({
@@ -193,7 +193,7 @@ export const viewEngine = async (id:number,pageSize:number,page:number): Promise
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}engineDetails/viewEngine?vehicleId=${id}&generatorId=0&page=${page}&pageSize=${pageSize}`,
+        url: `${API_URL}engineDetails/viewEngine?vehicleId=${id}&generatorId=0&page=${page}&pageSize=${pageSize}`,
         method: 'GET',
       });
       resolve({
@@ -215,7 +215,7 @@ export const viewColor = async (): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}vehicle/viewColour`,
+        url: `${API_URL}vehicle/viewColour`,
         method: 'GET',
       });
       resolve({
@@ -236,7 +236,7 @@ export const viewYear = async (): Promise<IUser> => {
 
     try {
       const { data } = await Axios({
-        url: `${'http://135.148.40.91:2000/api/'}vehicle/viewYear`,
+        url: `${API_URL}vehicle/viewYear`,
         method: 'GET',
       });
       resolve({
@@ -265,7 +265,7 @@ export const addEngine = async (data:EngineDetailType): Promise<IUser> => {
       try {
         const { data:obj } = await Axios({
          data :formData,
-          url: `${'http://135.148.40.91:2000/api/'}engineDetails/addEngine`,
+          url: `${API_URL}engineDetails/addEngine`,
           method: 'POST',
         });
         resolve({
@@ -294,7 +294,7 @@ export const addEngine = async (data:EngineDetailType): Promise<IUser> => {
       debugger
         const { data:obj } = await Axios({
          data:formData,
-          url: `${'http://135.148.40.91:2000/api/'}engineDetails/editEngine`,
+          url: `${API_URL}engineDetails/editEngine`,
           method: 'POST',
         });
         resolve({
@@ -316,7 +316,7 @@ export const addEngine = async (data:EngineDetailType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}engineDetails/deleteEngine`,
+          url: `${API_URL}engineDetails/deleteEngine`,
           method: 'POST',
         });
         resolve({

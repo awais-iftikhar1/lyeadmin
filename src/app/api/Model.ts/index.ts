@@ -16,7 +16,7 @@ export const getModel = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}model/getModel?makeId=${filterType}&limit=${limit}&offset=${offset}`,
+        url: `${API_URL}model/getModel?makeId=${filterType}&limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       resolve({
@@ -40,7 +40,7 @@ export const addModel= async (data:ModelType): Promise<IUser> => {
          data :{
           ...data,
          },
-          url: `${'http://135.148.40.91:2000/api/'}model/addModel`,
+          url: `${API_URL}model/addModel`,
           method: 'POST',
         });
         resolve({
@@ -66,7 +66,7 @@ export const addModel= async (data:ModelType): Promise<IUser> => {
             ...data
             
          },
-          url: `${'http://135.148.40.91:2000/api/'}model/editModel`,
+          url: `${API_URL}model/editModel`,
           method: 'POST',
         });
         resolve({
@@ -88,7 +88,7 @@ export const addModel= async (data:ModelType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}model/deleteModel`,
+          url: `${API_URL}model/deleteModel`,
           method: 'POST',
         });
         resolve({

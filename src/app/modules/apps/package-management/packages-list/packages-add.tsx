@@ -5,7 +5,6 @@ import { useFormik } from 'formik';
 import { createPackages } from '../../../../api/post/createPackages';
 import Toast from '../../../components/Toast';
 import { ConfrimModal } from '../../../modals/confirmModal/confirmModal';
-import { BASE_URL } from '../../../../config/constants/endpoints';
 
 type Props = {
   setRefreshList: Function;
@@ -104,7 +103,6 @@ const PackagesAdd = ({
   //   }
     
   // }
-  console.log(BASE_URL);
 
   const submitPackages = async () => {
     try {

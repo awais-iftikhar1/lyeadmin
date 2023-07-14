@@ -13,7 +13,7 @@ export const getCountry = async (): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}country/getCountry`,
+        url: `${API_URL}country/getCountry`,
         method: 'GET',
       });
       resolve({

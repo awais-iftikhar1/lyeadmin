@@ -13,7 +13,7 @@ export const viewBusinessType = async (): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}businessType/viewBusinessType`,
+        url: `${API_URL}businessType/viewBusinessType`,
         method: 'GET',
       });
       resolve({
@@ -35,7 +35,7 @@ export const addBusinessType = async (data:BusinessDataType): Promise<IUser> => 
     try {
       const { data:obj } = await Axios({
        data,
-        url: `${'http://135.148.40.91:2000/api/'}businessType/addBusinessType`,
+        url: `${API_URL}businessType/addBusinessType`,
         method: 'POST',
       });
       console.info(obj, '---- GET Express');
@@ -62,7 +62,7 @@ export const editBusinessType = async (data:BusinessDataType): Promise<IUser> =>
           id:data.id,
           type : data.type
        },
-        url: `${'http://135.148.40.91:2000/api/'}businessType/editBusinessType`,
+        url: `${API_URL}businessType/editBusinessType`,
         method: 'POST',
       });
       console.info(data, '---- GET Express');
@@ -85,7 +85,7 @@ export const editBusinessType = async (data:BusinessDataType): Promise<IUser> =>
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}businessType/deleteBusinessType`,
+          url: `${API_URL}businessType/deleteBusinessType`,
           method: 'POST',
         });
         resolve({

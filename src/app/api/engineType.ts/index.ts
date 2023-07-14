@@ -19,7 +19,7 @@ export const getEngineType = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}engineType/viewEngineType?typeName=${filterType}&limit=${limit}&offset=${offset}`,
+        url: `${API_URL}engineType/viewEngineType?typeName=${filterType}&limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -43,7 +43,7 @@ export const addEngineType = async (data:EngineType): Promise<IUser> => {
       try {
         const { data:obj } = await Axios({
          data,
-          url: `${'http://135.148.40.91:2000/api/'}engineType/addEngineType`,
+          url: `${API_URL}engineType/addEngineType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');
@@ -71,7 +71,7 @@ export const addEngineType = async (data:EngineType): Promise<IUser> => {
             typeName : data.typeName,
             noOfCylinders :data.noOfCylinders
          },
-          url: `${'http://135.148.40.91:2000/api/'}engineType/editEngineType`,
+          url: `${API_URL}engineType/editEngineType`,
           method: 'POST',
         });
         console.info(data, '---- GET Express');
@@ -95,7 +95,7 @@ export const addEngineType = async (data:EngineType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}engineType/deleteEngineType`,
+          url: `${API_URL}engineType/deleteEngineType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');

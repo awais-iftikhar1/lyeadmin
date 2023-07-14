@@ -14,7 +14,7 @@ export const viewTestLocation = async (pageSize:number,page:number): Promise<IUs
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}testLocation/viewTestLocation`,
+        url: `${API_URL}testLocation/viewTestLocation`,
         method: 'GET',
       });
       resolve({
@@ -45,7 +45,7 @@ export const addTestLocation = async (data:LocationType): Promise<IUser> => {
       try {
         const { data:obj } = await Axios({
          data :formData,
-          url: `${'http://135.148.40.91:2000/api/'}testLocation/addTestLocation`,
+          url: `${API_URL}testLocation/addTestLocation`,
           method: 'POST',
         });
         resolve({
@@ -73,7 +73,7 @@ export const addTestLocation = async (data:LocationType): Promise<IUser> => {
       }
         const { data:obj } = await Axios({
          data:formData,
-          url: `${'http://135.148.40.91:2000/api/'}testLocation/editTestLocation`,
+          url: `${API_URL}testLocation/editTestLocation`,
           method: 'POST',
         });
         resolve({
@@ -95,7 +95,7 @@ export const addTestLocation = async (data:LocationType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}testLocation/deleteTestLocation`,
+          url: `${API_URL}testLocation/deleteTestLocation`,
           method: 'POST',
         });
         resolve({

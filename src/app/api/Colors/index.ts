@@ -12,7 +12,7 @@ export const getColour = async (): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}colours/getColour`,
+        url: `${API_URL}colours/getColour`,
         method: 'GET',
       });
       resolve({
@@ -34,7 +34,7 @@ export const addColour = async (data:ColorDataType): Promise<IUser> => {
     try {
       const { data:obj } = await Axios({
        data,
-        url: `${'http://135.148.40.91:2000/api/'}colours/addColour`,
+        url: `${API_URL}colours/addColour`,
         method: 'POST',
       });
       console.info(obj, '---- GET Express');
@@ -61,7 +61,7 @@ export const editColour = async (data:ColorDataType): Promise<IUser> => {
           id:data.id,
           colour : data.colour
        },
-        url: `${'http://135.148.40.91:2000/api/'}colours/editColour`,
+        url: `${API_URL}colours/editColour`,
         method: 'POST',
       });
       console.info(data, '---- GET Express');
@@ -84,7 +84,7 @@ export const editColour = async (data:ColorDataType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}colours/deleteColour`,
+          url: `${API_URL}colours/deleteColour`,
           method: 'POST',
         });
         resolve({

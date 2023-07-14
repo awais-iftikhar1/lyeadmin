@@ -12,7 +12,7 @@ export const getLoginDetails = async (): Promise<any> => {
 
     try {
       // const { data } = await Axios({
-      //   url: `${'http://135.148.40.91:2000/api/'}employee/adminLogin`,
+      //   url: `${API_URL}employee/adminLogin`,
 
       //   // url: `${API_URL}admin/details`,
       //   headers: {

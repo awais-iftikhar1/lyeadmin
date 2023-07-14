@@ -1,12 +1,22 @@
 # example netlify.toml
-[build]
-  command = "yarn run build"
-  functions = "netlify"
-  publish = "build"
+# [build]
+ # command = "yarn run build"
+#  functions = "netlify"
+ # publish = "build"
 
-[context.master.environment]
-  REACT_APP_BASE_URL = "Add master branch url"
-[context.develop.environment]
-  REACT_APP_BASE_URL = "https://api.develop.platform.valantis.org/"
-[context.staging.environment]
-  REACT_APP_BASE_URL = "https://api.staging.platform.valantis.org/"
+#[context.master.environment]
+#  REACT_APP_BASE_URL = "Add master branch url"
+#[context.develop.environment]
+#  REACT_APP_BASE_URL = "https://api.develop.platform.valantis.org/"
+#[context.staging.environment]
+#  REACT_APP_BASE_URL = "https://api.staging.platform.valantis.org/"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[[headers]]
+for = "/"
+[headers.values]
+Access-Control-Allow-Origin = "*"

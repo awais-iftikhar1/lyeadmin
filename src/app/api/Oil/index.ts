@@ -11,7 +11,7 @@ export const viewOilManufacture = async (): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}oilManufacture/viewOilManufacture`,
+        url: `${API_URL}oilManufacture/viewOilManufacture`,
         method: 'GET',
       });
       resolve({
@@ -33,7 +33,7 @@ export const addOilManufacture = async (data:OilData): Promise<IUser> => {
     try {
       const { data:obj } = await Axios({
        data,
-        url: `${'http://135.148.40.91:2000/api/'}oilManufacture/addOilManufacture`,
+        url: `${API_URL}oilManufacture/addOilManufacture`,
         method: 'POST',
       });
       console.info(obj, '---- GET Express');
@@ -60,7 +60,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
           id:data.id,
           name : data.name
        },
-        url: `${'http://135.148.40.91:2000/api/'}oilManufacture/editOilManufacture`,
+        url: `${API_URL}oilManufacture/editOilManufacture`,
         method: 'POST',
       });
       console.info(data, '---- GET Express');
@@ -83,7 +83,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}oilManufacture/deleteOilManufacture`,
+          url: `${API_URL}oilManufacture/deleteOilManufacture`,
           method: 'POST',
         });
         resolve({
@@ -106,7 +106,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
       try {
         const { data } = await Axios({
           // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-          url: `${'http://135.148.40.91:2000/api/'}oilType/viewOilType`,
+          url: `${API_URL}oilType/viewOilType`,
           method: 'GET',
         });
         resolve({
@@ -128,7 +128,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
       try {
         const { data:obj } = await Axios({
          data,
-          url: `${'http://135.148.40.91:2000/api/'}oilType/addOilType`,
+          url: `${API_URL}oilType/addOilType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');
@@ -155,7 +155,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
             id:data.id,
             name : data.name
          },
-          url: `${'http://135.148.40.91:2000/api/'}oilType/editOilType`,
+          url: `${API_URL}oilType/editOilType`,
           method: 'POST',
         });
         console.info(data, '---- GET Express');
@@ -178,7 +178,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
           debugger
           const { data:obj } = await Axios({
            data:{id},
-            url: `${'http://135.148.40.91:2000/api/'}oilType/deleteOilType`,
+            url: `${API_URL}oilType/deleteOilType`,
             method: 'POST',
           });
           resolve({
@@ -201,7 +201,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
         try {
           const { data } = await Axios({
             // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-            url: `${'http://135.148.40.91:2000/api/'}oilGrade/viewOilGrade`,
+            url: `${API_URL}oilGrade/viewOilGrade`,
             method: 'GET',
           });
           resolve({
@@ -223,7 +223,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
         try {
           const { data:obj } = await Axios({
            data,
-            url: `${'http://135.148.40.91:2000/api/'}oilGrade/addOilGrade`,
+            url: `${API_URL}oilGrade/addOilGrade`,
             method: 'POST',
           });
           console.info(obj, '---- GET Express');
@@ -250,7 +250,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
               id:data.id,
               oilGrade : data.oilGrade
            },
-            url: `${'http://135.148.40.91:2000/api/'}oilGrade/editOilGrade`,
+            url: `${API_URL}oilGrade/editOilGrade`,
             method: 'POST',
           });
           console.info(data, '---- GET Express');
@@ -273,7 +273,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
             debugger
             const { data:obj } = await Axios({
              data:{id},
-              url: `${'http://135.148.40.91:2000/api/'}oilGrade/deleteOilGrade`,
+              url: `${API_URL}oilGrade/deleteOilGrade`,
               method: 'POST',
             });
             resolve({
@@ -297,7 +297,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
           try {
             const { data } = await Axios({
               // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-              url: `${'http://135.148.40.91:2000/api/'}oilEngineType/viewOilEngineType`,
+              url: `${API_URL}oilEngineType/viewOilEngineType`,
               method: 'GET',
             });
             resolve({
@@ -319,7 +319,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
           try {
             const { data:obj } = await Axios({
              data,
-              url: `${'http://135.148.40.91:2000/api/'}oilEngineType/addOilEngineType`,
+              url: `${API_URL}oilEngineType/addOilEngineType`,
               method: 'POST',
             });
             console.info(obj, '---- GET Express');
@@ -346,7 +346,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
                 id:data.id,
                 engineType : data.engineType
              },
-              url: `${'http://135.148.40.91:2000/api/'}oilEngineType/editOilEngineType`,
+              url: `${API_URL}oilEngineType/editOilEngineType`,
               method: 'POST',
             });
             console.info(data, '---- GET Express');
@@ -369,7 +369,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
               debugger
               const { data:obj } = await Axios({
                data:{id},
-                url: `${'http://135.148.40.91:2000/api/'}oilEngineType/deleteOilEngineType`,
+                url: `${API_URL}oilEngineType/deleteOilEngineType`,
                 method: 'POST',
               });
               resolve({
@@ -393,7 +393,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
             try {
               const { data } = await Axios({
                 // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-                url: `${'http://135.148.40.91:2000/api/'}engineOilDetails/viewEngineOilDetails`,
+                url: `${API_URL}engineOilDetails/viewEngineOilDetails`,
                 method: 'GET',
               });
               resolve({
@@ -415,7 +415,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
             try {
               const { data:obj } = await Axios({
                data,
-                url: `${'http://135.148.40.91:2000/api/'}engineOilDetails/addEngineOilDetails`,
+                url: `${API_URL}engineOilDetails/addEngineOilDetails`,
                 method: 'POST',
               });
               console.info(obj, '---- GET Express');
@@ -442,7 +442,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
                   id:data.id,
                   ...data
                },
-                url: `${'http://135.148.40.91:2000/api/'}engineOilDetails/updateEngineOilDetails`,
+                url: `${API_URL}engineOilDetails/updateEngineOilDetails`,
                 method: 'POST',
               });
               console.info(data, '---- GET Express');
@@ -465,7 +465,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
                 debugger
                 const { data:obj } = await Axios({
                  data:{id},
-                  url: `${'http://135.148.40.91:2000/api/'}engineOilDetails/deleteEngineOilDetails`,
+                  url: `${API_URL}engineOilDetails/deleteEngineOilDetails`,
                   method: 'POST',
                 });
                 resolve({
@@ -490,7 +490,7 @@ export const editOilManufacture = async (data:OilData): Promise<IUser> => {
         try {
           const { data } = await Axios({
             // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-            url: `${'http://135.148.40.91:2000/api/'}testLocation/viewTestLocation`,
+            url: `${API_URL}testLocation/viewTestLocation`,
             method: 'GET',
           });
           resolve({

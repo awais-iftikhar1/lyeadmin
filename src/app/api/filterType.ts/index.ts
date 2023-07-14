@@ -14,7 +14,7 @@ export const getFilterType = async (
 
     try {
       const { data } = await Axios({
-        url: `${'http://135.148.40.91:2000/api/'}filterType/viewFilterType?limit=${limit}&offset=${offset}`,
+        url: `${API_URL}filterType/viewFilterType?limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -37,7 +37,7 @@ export const addFilterType = async (data:FilterType): Promise<IUser> => {
       try {
         const { data:obj } = await Axios({
          data,
-          url: `${'http://135.148.40.91:2000/api/'}filterType/addFilterType`,
+          url: `${API_URL}filterType/addFilterType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');
@@ -63,7 +63,7 @@ export const addFilterType = async (data:FilterType): Promise<IUser> => {
             id:data.id,
             type : data.type
          },
-          url: `${'http://135.148.40.91:2000/api/'}fuelType/editFuelType`,
+          url: `${API_URL}fuelType/editFuelType`,
           method: 'POST',
         });
         console.info(data, '---- GET Express');
@@ -86,7 +86,7 @@ export const addFilterType = async (data:FilterType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}filterType/deleteFilterType`,
+          url: `${API_URL}filterType/deleteFilterType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');

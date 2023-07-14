@@ -12,7 +12,7 @@ export const viewYear = async (): Promise<IUser> => {
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}yearManufacture/getYear`,
+        url: `${API_URL}yearManufacture/getYear`,
         method: 'GET',
       });
       resolve({
@@ -34,7 +34,7 @@ export const addYear = async (data:YearData): Promise<IUser> => {
     try {
       const { data:obj } = await Axios({
        data,
-        url: `${'http://135.148.40.91:2000/api/'}yearManufacture/addYear`,
+        url: `${API_URL}yearManufacture/addYear`,
         method: 'POST',
       });
       console.info(obj, '---- GET Express');
@@ -61,7 +61,7 @@ export const editYear = async (data:YearData): Promise<IUser> => {
           id:data.id,
           year : data.year
        },
-        url: `${'http://135.148.40.91:2000/api/'}yearManufacture/editYear`,
+        url: `${API_URL}yearManufacture/editYear`,
         method: 'POST',
       });
       console.info(data, '---- GET Express');
@@ -84,7 +84,7 @@ export const editYear = async (data:YearData): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}yearManufacture/deleteYear`,
+          url: `${API_URL}yearManufacture/deleteYear`,
           method: 'POST',
         });
         resolve({

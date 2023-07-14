@@ -18,7 +18,7 @@ export const getFuelType = async (
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
-        url: `${'http://135.148.40.91:2000/api/'}fuelType/viewFuelType?limit=${limit}&offset=${offset}`,
+        url: `${API_URL}fuelType/viewFuelType?limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -42,7 +42,7 @@ export const addFuelType = async (data:FuelType): Promise<IUser> => {
       try {
         const { data:obj } = await Axios({
          data,
-          url: `${'http://135.148.40.91:2000/api/'}fuelType/addFuelType`,
+          url: `${API_URL}fuelType/addFuelType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');
@@ -69,7 +69,7 @@ export const addFuelType = async (data:FuelType): Promise<IUser> => {
             id:data.id,
             typeName : data.typeName
          },
-          url: `${'http://135.148.40.91:2000/api/'}fuelType/editFuelType`,
+          url: `${API_URL}fuelType/editFuelType`,
           method: 'POST',
         });
         console.info(data, '---- GET Express');
@@ -93,7 +93,7 @@ export const addFuelType = async (data:FuelType): Promise<IUser> => {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${'http://135.148.40.91:2000/api/'}fuelType/deleteFuelType`,
+          url: `${API_URL}fuelType/deleteFuelType`,
           method: 'POST',
         });
         console.info(obj, '---- GET Express');
