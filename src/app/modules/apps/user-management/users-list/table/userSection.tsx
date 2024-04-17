@@ -14,13 +14,13 @@ const UserSection : React.FC<IUserProps>= ({pushReference}) => {
   const [refreshList, setRefreshList] = useState<boolean>(false);
   const [userData, setUserData] = useState<string[]>([]);
   const [search, setSearch] = useState<string>('');
-  const [filter, setFilter] = useState<string>('');
+  const [filter, setFilter] = useState<string>(filterList[0].value);
 
   const [userCount, setUserCount] = useState<number>(0);
 
   const [perPage] = useState<number>(10);
   const [size, setSize] = useState<number>(perPage);
-  const [current, setCurrent] = useState<number>(1);
+  const [current, setCurrent] = useState<number>(0);
   const [, debounceSearch] = useDebouncedChangeHandler(search, (value) => _search(value))
 
 
@@ -78,8 +78,8 @@ const UserSection : React.FC<IUserProps>= ({pushReference}) => {
   const lotteryData = async (pageSize: number, page: number) => {
     setIsLoading(true);
     try {
-      const data: any = await getUserData(pageSize, page - 1, search, filter);
-      setUserData(data?.data.users);
+      const data: any = await getUserData(pageSize, page, search, filter);
+      setUserData(data?.data.rows);
       setUserCount(data?.data.count);
     } catch (error) {
       console.error('Error', error);

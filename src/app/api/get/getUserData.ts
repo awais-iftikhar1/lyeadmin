@@ -18,15 +18,15 @@ export const getUserData = async (
     
     try {
       const { data } = await Axios({
-        url: `${API_URL}admin-users/users`,
+        url: `${API_URL}allUsersProfile/getAllUsers`,
         headers: {
           Authorization: jwt,
         },
         params: {
-          limit,
-          offset,
+          type:filter === '' ? undefined : filter,
+          page:offset,
+          pageSize:limit,
           search: search === '' ? undefined : search,
-          filter: filter === '' ? undefined : filter,
         },
         method: 'GET',
       });

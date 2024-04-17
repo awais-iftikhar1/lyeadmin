@@ -42,8 +42,7 @@ const PackagesListing: React.FC<Props> = ({
 
   const PackageDetail = async (data: PackagesDetails|null) => {
     try {
-      console.log(data);
-      
+
       // const packageId = await getPackagesDetail(detailId);
       setPackageDetails(data);
       setShowCreateAppModal(true);
@@ -110,7 +109,7 @@ const PackagesListing: React.FC<Props> = ({
                 Packages Listing
               </span>
             </h3>
-            <button
+            {/* <button
               type={'button'}
               className='btn btn-success me-2'
               onClick={() => {
@@ -118,7 +117,7 @@ const PackagesListing: React.FC<Props> = ({
               }}
             >
               Add
-            </button>
+            </button> */}
           </div>
           {/* end::Header */}
           {/* begin::Body */}

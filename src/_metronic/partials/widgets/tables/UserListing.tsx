@@ -50,7 +50,10 @@ const UserListing: React.FC<Props> = ({
   const [boolState, setBoolState] = useState<string>('');
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError] = useState<string>('');
-  const [selectedValue, setSelectedValue] = useState<IOptionValue | null>(null);
+  const [selectedValue, setSelectedValue] = useState<IOptionValue | null>({
+    label: filterData[0].label,
+    value: filterData[0].value,
+  });
 
   const userStatus = async (deleteId: string, status: any) => {
     setIsLoading(true);
@@ -89,7 +92,12 @@ const UserListing: React.FC<Props> = ({
   return (
     <>
       <div className='d-flex justify-content-between align-items-center'>
-        <UsersListSearchComponent setSearch={setSearch} search={search} />
+        <h3 className='card-title align-items-start flex-column'>
+          <span className='card-label fw-bold fs-3 mb-1'>
+            User Listing
+          </span>
+        </h3>
+        {/* <UsersListSearchComponent setSearch={setSearch} search={search} /> */}
         <SelectView
           data={filterData}
           placeholder='Select Filter...'
@@ -111,13 +119,13 @@ const UserListing: React.FC<Props> = ({
                 {/* begin::Table head */}
                 <thead>
                   <tr className='fw-bold text-muted bg-light'>
-                    <th className='ps-4 min-w-200px rounded-start'>Username</th>
+                    <th className='ps-4 min-w-200px rounded-start'>Name</th>
                     <th className='min-w-300px'>Email</th>
                     <th className='min-w-200px'>Created Date</th>
                     <th className='min-w-175px'>Country</th>
                     <th className='min-w-125px'>Status</th>
-                    <th className='min-w-100px'>Referrals</th>
-                    <th className='min-w-100px'>Actions</th>
+                    {/* <th className='min-w-100px'>Referrals</th> */}
+                    {/* <th className='min-w-100px'>Actions</th> */}
                   </tr>
                 </thead>
                 {/* end::Table head */}
@@ -148,11 +156,12 @@ const UserListing: React.FC<Props> = ({
                               <div className='d-flex align-items-center'>
                                 <div className='d-flex justify-content-start flex-column'>
                                   <p className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                                    {item.username}
+                                    {item.fname}
                                   </p>
                                 </div>
                               </div>
                             </td>
+
                             <td>
                               <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
                                 {item.email}
@@ -170,14 +179,12 @@ const UserListing: React.FC<Props> = ({
                             </td>
                             <td>
                               <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                                {item.is_verified
-                                  ? item.is_blocked
-                                    ? 'Block'
-                                    : 'Active'
-                                  : 'Inactive'}
+                                {item.status === 0
+                                  ? 'Block'
+                                  : 'Active'}
                               </p>
                             </td>
-                            <td>
+                            {/* <td>
                               <p
                                 className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 cursor-pointer'
                                 id='pkg_edit_modal'
@@ -192,8 +199,8 @@ const UserListing: React.FC<Props> = ({
                                   className='svg-icon-3'
                                 />
                               </p>
-                            </td>
-                            <td>
+                            </td> */}
+                            {/* <td>
                               <div className='d-flex justify-content-end flex-shrink-0'>
                                 <p
                                   className={`btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 cursor-pointer ${
@@ -234,7 +241,7 @@ const UserListing: React.FC<Props> = ({
                                   )}
                                 </p>
                               </div>
-                            </td>
+                            </td> */}
                           </tr>
                         );
                       })}
