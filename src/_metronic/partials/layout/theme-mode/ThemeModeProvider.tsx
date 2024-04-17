@@ -95,4 +95,4 @@ const ThemeModeProvider = ({children}: {children: React.ReactNode}) => {
   )
 }
 
-export {ThemeModeProvider, useThemeMode, systemMode, themeModeSwitchHelper}
+export {ThemeModeProvider, useThemeMode, systemMode, themeModeSwitchHelper,themeModeLSKey}
