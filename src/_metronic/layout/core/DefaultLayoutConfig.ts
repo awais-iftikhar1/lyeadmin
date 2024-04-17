@@ -1,3 +1,4 @@
+import { themeModeLSKey } from '../../partials'
 import {ILayout} from './LayoutModels'
 
 export const DefaultLayoutConfig: ILayout = {
@@ -28,7 +29,7 @@ export const DefaultLayoutConfig: ILayout = {
   },
   aside: {
     display: true,
-    theme: 'dark',
+    theme: localStorage.getItem(themeModeLSKey) === 'dark' ? 'dark' : 'light',
     menu: 'main',
     fixed: true,
     minimized: false,
