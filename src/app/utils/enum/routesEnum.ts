@@ -15,6 +15,7 @@ export enum ROUTES {
     OilGrade = 'Oil Grade',
     OilEngineType='Oil Engine Type',
     year='Year',
+    corporateRequest = 'Corporate Request',
     color='Color',
     business= 'Business Type',
     testLocation = 'Test Location'

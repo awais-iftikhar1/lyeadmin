@@ -14,12 +14,10 @@ export const routes = {
     OilDetails :"Oil Detail",
     OilManfacture:'Oil Manufacture',
     year:'Year',
+    corporateRequest : 'Corporate Request',
     color:'Color',
     business:'Business Type',
     testLocation :'Test Location'
-
-
-
 
 }
 export const breadCrumbsData ={
@@ -139,6 +137,20 @@ export const breadCrumbsData ={
         {
           title: 'Year Management',
           path: '/year-management/year',
+          isSeparator: false,
+          isActive: false,
+        },
+        {
+          title: '',
+          path: '',
+          isSeparator: true,
+          isActive: false,
+        },
+      ],
+      [ROUTES.corporateRequest] : [
+        {
+          title: 'Corporate Management',
+          path: '/corporate-management/corporateRequest',
           isSeparator: false,
           isActive: false,
         },

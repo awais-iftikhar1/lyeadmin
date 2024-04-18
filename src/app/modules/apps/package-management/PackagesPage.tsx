@@ -120,9 +120,9 @@ const PackagesPage = () => {
     }
   };
 
-  useEffect(() => {
-    RewardDetail();
-  }, [percentData]);
+  // useEffect(() => {
+  //   RewardDetail();
+  // }, [percentData]);
 
   useEffect(() => {
     packagesData(size, current);
@@ -148,9 +148,9 @@ const PackagesPage = () => {
                     Packages Listing
                   </Tab>
                   <Tab className='btn btn-sm btn-light me-3'>Packages Add</Tab>
-                  <Tab className='btn btn-sm btn-light me-3'>
+                  {/* <Tab className='btn btn-sm btn-light me-3'>
                     Packages Rewards Percentage
-                  </Tab>
+                  </Tab> */}
                 </TabList>
                 <TabPanel>
                   <KTCard>

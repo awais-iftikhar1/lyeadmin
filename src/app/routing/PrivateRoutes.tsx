@@ -33,6 +33,9 @@ import('../modules/apps/vehicle-machine-management/VehicleMachine')
 const YearDetails = lazy(() =>
 import('../modules/apps/year-management/YearDetails')
 );
+const CorporateDetails = lazy(() =>
+import('../modules/apps/corporate-management/CorporateRequestDetails')
+);
 const ColorDetails = lazy(() =>
 import('../modules/apps/color-management/colorDetails')
 );
@@ -263,6 +266,14 @@ import('../modules/apps/oilDetails-management/OilDetails')
           element={
             <SuspensedView>
               <YearDetails />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='corporate-management/*'
+          element={
+            <SuspensedView>
+              <CorporateDetails />
             </SuspensedView>
           }
         />
