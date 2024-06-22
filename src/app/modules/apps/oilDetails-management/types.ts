@@ -18,6 +18,7 @@ export interface EngineOilType {
   oilCheckChangeIntervalHours:number | undefined,
   notes:string | undefined,
   oilModel:string | undefined,
+  totalkm: number|undefined
 }
 
 

@@ -57,6 +57,8 @@ const OilDetailsAddEdit = ({
 
       oilCheckResultNewOil:Yup.number()
       .required('oilCheckResultNewOil is required'),
+      totalkm:Yup.number()
+      .required('totalkm is required'),
   });
   
 
@@ -82,7 +84,7 @@ const OilDetailsAddEdit = ({
     frontPictureOfKeg:engineOilPropsData?.frontPictureOfKeg,
     backPictureOfKeg:engineOilPropsData?.backPictureOfKeg,
     oilLiteraturePicture:engineOilPropsData?.oilLiteraturePicture,
-
+    totalkm:engineOilPropsData?.totalkm
   };
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -954,6 +956,45 @@ const OilDetailsAddEdit = ({
 
               </div>
           
+
+              <div className='row mb-6'>
+              <div className='col-lg-6'>
+
+                <Flex>
+
+                  <label className='col-lg-3 col-form-label required fw-bold fs-6'>
+                   Total KM
+                  </label>
+
+                  <div className='col-lg-9 fv-row '>
+                  <input
+                        type='number'
+                        className='form-control form-control-lg form-control-solid pe-12'
+                        placeholder='Enter Total Km'
+                        name='totalkm'
+                        value={formik.values.totalkm}
+                        onChange={(event) => {
+                          formik.handleChange(event);
+                        }}
+                      />
+                      {formik.touched.totalkm && formik.errors.totalkm && (
+                        <div className='fv-plugins-message-container'>
+                          <div className='fv-help-block'>{formik.errors.totalkm}</div>
+                        </div>
+                      )}
+                  </div>
+                </Flex>
+
+                </div>
+             
+
+              
+
+              
+
+
+
+              </div>
           
 
 
