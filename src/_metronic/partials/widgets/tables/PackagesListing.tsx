@@ -8,6 +8,7 @@ import Toast from '../../../../app/modules/components/Toast';
 import moment from 'moment';
 import { ConfrimModal } from '../../../../app/modules/modals/confirmModal/confirmModal';
 import { PackagesDetails } from '../../../../app/modules/apps/package-management/packages-list/packagesModel';
+import { editPackages } from '../../../../app/api/put/editPackages';
 type Props = {
   className: string;
   loading: boolean;
@@ -29,6 +30,8 @@ const PackagesListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
+  const [showConfirmModalStatus, setShowConfrimModalStatus] = useState<boolean>(false);
+
   const [packageDetails, setPackageDetails] = useState<PackagesDetails|null>();
   const [itemId, setItemId] = useState<string>();
 
@@ -55,6 +58,14 @@ const PackagesListing: React.FC<Props> = ({
     debugger
     // itemId && userStatus(itemId, isUserBlock);
     itemId && deletePackage(itemId);
+  };
+  const statusHandler =async () => {
+    // const obj =  {
+    //   id: itemId,
+      
+    //   ...data
+    // }
+    // await editPackages(obj);
   };
 
   const gotoRewards = () => {
@@ -210,14 +221,14 @@ const PackagesListing: React.FC<Props> = ({
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.created_at).format(
+                              {moment(item.createdAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.updated_at).format(
+                              {moment(item.updatedAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>
@@ -254,7 +265,7 @@ const PackagesListing: React.FC<Props> = ({
                                 onClick={() => {
                                   setIsUserBlock(item.deleted_at === null);
                                   setItemId(item._id);
-                                  setShowConfrimModal(true);
+                                  setShowConfrimModalStatus(true);
                                 }}
                                 className={`btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1`}
                               >
@@ -311,6 +322,13 @@ const PackagesListing: React.FC<Props> = ({
         // modalTitle={isUserBlock ? 'inactive' : 'active'}
         modalTitle={'Delete Package'}
         handleClose={() => setShowConfrimModal(false)}
+      />
+       <ConfrimModal
+        show={showConfirmModalStatus}
+        confirmProcess={statusHandler}
+        // modalTitle={isUserBlock ? 'inactive' : 'active'}
+        modalTitle={'Update Status'}
+        handleClose={() => setShowConfrimModalStatus(false)}
       />
     </>
   );

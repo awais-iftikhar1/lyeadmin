@@ -8,12 +8,12 @@ import Toast from '../../components/Toast';
 import { Tabs } from 'react-tabs';
 import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
 import { usePathName } from '../../../hook/usePathName';
-import { VehicleListing } from '../../../../_metronic/partials/widgets/tables/VehicleListing';
+import { ProductListing } from '../../../../_metronic/partials/widgets/tables/ProductListing';
 import { viewVehicle } from '../../../api/Vehicle.ts';
 
 
 
-const Vehicle = () => {
+const Product = () => {
   const [filterList, setFilterList] = useState<string[]>([]);
   const [refreshList, setRefreshList] = useState<boolean>(false);
   const [isloading, setIsLoading] = useState<boolean>(false);
@@ -39,6 +39,7 @@ const Vehicle = () => {
       setCurrent(newPerPage);
     }
   };
+  console.log(value,'value')
 
   const getData = (current: number, pageSize: number) => {
     // Normally you should get the data from the server
@@ -101,7 +102,6 @@ const Vehicle = () => {
 
   
   useEffect(() => {
-    debugger
     filterData(value ,size, current);
     setRefreshList(false);
   }, [refreshList,value]);
@@ -113,10 +113,10 @@ const Vehicle = () => {
     <Routes>
       <Route element={<Outlet />}>
         <Route
-          path='vehicle'
+          path='product'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbsData.Vehicle}>{routes[route as keyof typeof routes] }</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbsData.Product}>{routes[route as keyof typeof routes] }</PageTitle>
 
               <Tabs
                 selectedTabClassName='btn-primary'
@@ -126,7 +126,7 @@ const Vehicle = () => {
               
                 <KTCard>
                     <KTCardBody className='py-4'>
-                      <VehicleListing
+                      <ProductListing
                       filterDropDownData={vehicleTypes}
                         setValue={setValue}
                         className='mb-5 mb-xl-8'
@@ -172,4 +172,4 @@ const Vehicle = () => {
   );
 };
 
-export default Vehicle;
+export default Product;

@@ -18,7 +18,7 @@ export function AsideMenuMain() {
       const { user } = await getLoginDetails();
       //todo
     //  user?.adminRole?.privileges.push('Fuels','Engines','Filters','VehicleMachine','Make','Model','Vehicle','enginedetails','Generator','Packages','oil','year','color','business')
-    user?.adminRole?.privileges.push('request','user','engines','enginedetails','Packages','Fuel','Engines','Filters','VehicleMachine','Make','Model','Vehicle','Generator','oil','year','color','business','testLocation')
+    user?.adminRole?.privileges.push('request','user','engines','enginedetails','Packages','Fuel','Engines','Filters','VehicleMachine','Make','Model','Vehicle','Generator','oil','year','color','business','testLocation','Product')
       setPrivileges(
         user?.adminRole?.privileges.map((element: string) => {
           return element.toLowerCase().split(/\s+/)[0];
@@ -72,10 +72,10 @@ export function AsideMenuMain() {
         fontIcon='bi-layers'
       />
        <AsideMenuItem
-        isDisabled={privileges?.includes('vehicle')}
-        to='/vehicle-management/vehicle'
+        isDisabled={privileges?.includes('product')}
+        to='/product-management/product'
         icon='/media/icons/duotune/general/gen051.svg'
-        title='Vehicle'
+        title='Product Management'
         fontIcon='bi-layers'
       />
           <AsideMenuItem

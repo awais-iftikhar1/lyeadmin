@@ -6,6 +6,7 @@ export enum ROUTES {
     make="Make",
     model="Model",
     vehicle="Vehicle",
+    product="Product",
     enginedetails="Engine Detail",
     generator="Generator",
     packages="Packages",

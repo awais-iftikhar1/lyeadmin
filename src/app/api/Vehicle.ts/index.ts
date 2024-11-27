@@ -2,7 +2,7 @@ import Axios from '../../user/interceptor';
 import { API_URL } from '../../config/constants/endpoints';
 import { IUser } from '../../user/types';
 import { MakeType } from '../../modules/apps/make-management/types';
-import { VehicleType } from '../../modules/apps/vehicle-management/types';
+import { ProductType } from '../../modules/apps/product-management/types';
 
 
 export const viewMake = async (filterType:string): Promise<IUser> => {
@@ -141,7 +141,7 @@ export const viewYear = async (): Promise<IUser> => {
 
 
 
-export const addVehicle = async (data:VehicleType): Promise<IUser> => {
+export const addVehicle = async (data:ProductType): Promise<IUser> => {
     return new Promise(async (resolve, reject) => {
       const formData = new FormData();
       for (const key in data) {
@@ -163,12 +163,12 @@ export const addVehicle = async (data:VehicleType): Promise<IUser> => {
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };
 
-  export const editVehicle = async (data:VehicleType): Promise<IUser> => {
+  export const editVehicle = async (data:ProductType): Promise<IUser> => {
     return new Promise(async (resolve, reject) => {
       
       try {
@@ -196,14 +196,14 @@ export const addVehicle = async (data:VehicleType): Promise<IUser> => {
     });
   };
 
-  export const deleteMake = async (id:string): Promise<IUser> => {
+  export const deleteVehicle = async (id:string): Promise<IUser> => {
     return new Promise(async (resolve, reject) => {
   
       try {
         debugger
         const { data:obj } = await Axios({
          data:{id},
-          url: `${API_URL}make/deleteMake`,
+          url: `${API_URL}vehicle/deleteVehicle`,
           method: 'POST',
         });
         resolve({
@@ -213,7 +213,7 @@ export const addVehicle = async (data:VehicleType): Promise<IUser> => {
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };

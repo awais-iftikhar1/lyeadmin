@@ -14,12 +14,14 @@ export const getFuelType = async (
   return new Promise(async (resolve, reject) => {
     const jwt: any = getAuth();
 
+    console.log('hello')
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
         url: `${API_URL}fuelType/viewFuelType?limit=${limit}&offset=${offset}`,
         method: 'GET',
       });
+      console.log(data)
       console.info(data, '---- GET Express');
       resolve({
         ...data,

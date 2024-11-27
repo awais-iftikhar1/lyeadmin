@@ -14,8 +14,6 @@ export const getEngineType = async (
   offset: number
 ): Promise<IUser> => {
   return new Promise(async (resolve, reject) => {
-    const jwt: any = getAuth();
-
     try {
       const { data } = await Axios({
         // url: `${API_URL}package/viewPackage?limit=${limit}&offset=${offset}`,
@@ -53,8 +51,8 @@ export const addEngineType = async (data:EngineType): Promise<IUser> => {
         });
       } catch (error: any) {
         debugger
-        console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        console.error('Failed to post user express interest', error.response);
+        reject(error.response.data.message)
       }
     });
   };
@@ -106,7 +104,7 @@ export const addEngineType = async (data:EngineType): Promise<IUser> => {
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };

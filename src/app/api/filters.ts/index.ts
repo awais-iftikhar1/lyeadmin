@@ -8,14 +8,14 @@ import { Filter } from '../../modules/apps/filter-management/types';
 
 export const getFilters = async (
   filterTypeId: number,
-  limit: number,
-  offset: number
+  pageSize:number,
+  page:number
 ): Promise<IUser> => {
   return new Promise(async (resolve, reject) => {
 
     try {
       const { data } = await Axios({
-        url: `${API_URL}filter/viewFilter?filterTypeId=${filterTypeId}`,
+        url: `${API_URL}filter/viewFilter?filterTypeId=${filterTypeId}?page=${page}&pageSize=${pageSize}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');

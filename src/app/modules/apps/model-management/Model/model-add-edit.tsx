@@ -6,7 +6,6 @@ import { IOptionValue } from '../../user-roles/roles-privileges-list/rolesPrivil
 import { ModelType } from '../types';
 import { routes, vehicleTypes } from '../../../../utils/constants/index';
 import { usePathName } from '../../../../hook/usePathName';
-import { addVehicleMachineType, editVehicleMachineType } from '../../../../api/vehicleMachineType.ts/index';
 import { addModel, editModel } from '../../../../api/Model.ts';
 import { getMake } from '../../../../api/Make.ts';
 
@@ -130,7 +129,6 @@ const ModelAddEdit = ({
       setLoading(true);
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);

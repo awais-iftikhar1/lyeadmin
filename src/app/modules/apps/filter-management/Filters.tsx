@@ -46,6 +46,7 @@ const Filters = () => {
 
   const [value, setValue] = useState<string>('1');
 
+  console.log(value)
 
   const [perPage] = useState<number>(10);
   const [size, setSize] = useState<number>(perPage);

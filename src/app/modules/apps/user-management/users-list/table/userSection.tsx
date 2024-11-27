@@ -24,6 +24,7 @@ const UserSection : React.FC<IUserProps>= ({pushReference}) => {
   const [, debounceSearch] = useDebouncedChangeHandler(search, (value) => _search(value))
 
 
+  console.log(filter)
 
 
   const PerPageChange = (value: number) => {
@@ -90,10 +91,10 @@ const UserSection : React.FC<IUserProps>= ({pushReference}) => {
   useEffect(() => {
     lotteryData(size, current);
     setRefreshList(false);
-  }, [refreshList]);
+  }, [refreshList,filter,current]);
 
   useEffect(() => {
-    lotteryData(size, 1);
+    setCurrent(0)
   }, [filter]);
 
   const _search = (value : string) => {
@@ -121,9 +122,11 @@ const UserSection : React.FC<IUserProps>= ({pushReference}) => {
       />
       <Pagination
         className='pagination pt-10'
-        showTotal={(total, range) =>
-          `Showing ${range[0]}-${range[1]} of ${total}`
-        }
+        showTotal={(total, range) =>{
+          console.log('total',total)
+          console.log('range',range)
+          return `Showing ${range[0]}-${range[1]} of ${total}`
+        }}
         onChange={PaginationChange}
         total={userCount}
         current={current}

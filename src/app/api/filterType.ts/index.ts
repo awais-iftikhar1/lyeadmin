@@ -7,14 +7,13 @@ import { Filter, FilterType } from '../../modules/apps/filter-management/types';
 
 
 export const getFilterType = async (
-  limit: number,
-  offset: number
+  pageSize:number,page:number
 ): Promise<IUser> => {
   return new Promise(async (resolve, reject) => {
 
     try {
       const { data } = await Axios({
-        url: `${API_URL}filterType/viewFilterType?limit=${limit}&offset=${offset}`,
+        url: `${API_URL}filterType/viewFilterType?page=${page}&pageSize=${pageSize}`,
         method: 'GET',
       });
       console.info(data, '---- GET Express');
@@ -61,7 +60,7 @@ export const addFilterType = async (data:FilterType): Promise<IUser> => {
         const { data:obj } = await Axios({
          data:{
             id:data.id,
-            type : data.type
+            typeName : data.type
          },
           url: `${API_URL}fuelType/editFuelType`,
           method: 'POST',

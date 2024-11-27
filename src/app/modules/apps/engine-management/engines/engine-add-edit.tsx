@@ -75,12 +75,11 @@ const EngineAddEdit = ({
   const formik = useFormik<EngineType>({
     initialValues,
     validationSchema: editPackageSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       console.log(values);      
       setLoading(true);
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -237,7 +236,7 @@ const EngineAddEdit = ({
                 <input
                   type='number'
                   className='form-control form-control-lg form-control-solid pe-12'
-                  placeholder='Enter fuel type'
+                  placeholder='no of cylinders'
                   name='noOfCylinders'
                   value={formik.values.noOfCylinders}
                   onChange={(event) => {

@@ -48,7 +48,6 @@ const FilterTypeAddEdit = ({
       setLoading(true);
       const formData = Object.assign(initialValues, values);
       editFuelHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);

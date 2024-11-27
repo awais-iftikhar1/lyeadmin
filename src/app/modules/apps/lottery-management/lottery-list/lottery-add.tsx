@@ -124,7 +124,6 @@ const LotteryAdd = ({ setRefreshList }: Props) => {
       const updatedData = Object.assign(data, values);
       setData(updatedData);
       submitLottery();
-      resetForm();
       setTimeout(() => {
         setLoading(false);
       }, 1000);

@@ -50,7 +50,6 @@ const AddRoles = ({ dataList, setRefreshList }: Props) => {
       setLoading(true);
       const updatedData = Object.assign(data, values);
       setData(updatedData);
-      resetForm();
       addRoles();
       setTimeout(() => {
         setLoading(false);

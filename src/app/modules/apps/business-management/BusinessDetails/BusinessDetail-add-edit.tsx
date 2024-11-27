@@ -65,7 +65,6 @@ const BusinessDetailAddEdit = ({
       setLoading(true); 
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);

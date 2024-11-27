@@ -50,9 +50,8 @@ export const addVehicleMachineType = async (data:VehicleType): Promise<IUser> =>
           message: obj.message,
         });
       } catch (error: any) {
-        debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };
@@ -102,7 +101,7 @@ export const addVehicleMachineType = async (data:VehicleType): Promise<IUser> =>
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };

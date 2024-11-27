@@ -11,6 +11,7 @@ import { addVehicle, editVehicle, viewColor, viewMake, viewModel, viewVehicleTyp
 import { addGenerator, editGenerator, viewFuelSystem, viewFuelUsed } from '../../../../api/Generator.ts';
 import { addEngineOilDetails, editOilEngineType, updateEngineOilDetails, viewOilEngineType, viewOilGrade, viewOilManufacture, viewOilType, viewTestLocation } from '../../../../api/Oil';
 import { EngineOilType } from '../types';
+import { Spinner } from 'react-bootstrap';
 
 type Props = {
   data: EngineOilType | null | any;
@@ -129,6 +130,7 @@ const OilDetailsAddEdit = ({
 
 
  
+  const [loader,setLoader] = useState(false)
 
 
 
@@ -172,7 +174,7 @@ const OilDetailsAddEdit = ({
   useEffect(() => {
     (async () => {
 
-
+      setLoader(true)
       //get oil manufacture
 
       const fuelUsed = await viewOilManufacture();
@@ -260,6 +262,7 @@ const OilDetailsAddEdit = ({
           value: testlocation[0].value
         })
       }
+      setLoader(false)
 
     })()
 
@@ -387,6 +390,9 @@ const OilDetailsAddEdit = ({
     }
   };
 
+  if(loader){
+    return <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'200px',padding:50}} className='d-flex justify-content-center'><Spinner animation='border'/></div>
+  }
 
 
   return (
@@ -608,7 +614,7 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    oilCheckResultNewOil
+                    Oil Result
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -633,7 +639,7 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    dateTested
+                    Date
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -721,7 +727,7 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    oneLitreCost
+                    Cost Per Litre
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -747,7 +753,8 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    fourLitreCost
+                    
+                    Four Litre Cost
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -781,7 +788,7 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    fiveLitreCost
+                    Five Litre Cost
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -807,7 +814,8 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    twoHundredLitreCost
+                    
+                    Two Hundred Litre Cost
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -840,7 +848,8 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    oilCheckChangeIntervalMiles
+                    
+                    Oil Interval Miles
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -866,7 +875,8 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    oilCheckChangeIntervalkm
+                    
+                    Oil Interval KM
                     </label>
 
                     <div className='col-lg-9 fv-row '>
@@ -925,7 +935,8 @@ const OilDetailsAddEdit = ({
                 <div className='col-lg-6'>
                   <Flex>
                     <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                    oilCheckChangeIntervalHours
+                    
+                    Oil Interval Hours
                     </label>
 
                     <div className='col-lg-9 fv-row '>

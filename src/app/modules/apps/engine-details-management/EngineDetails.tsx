@@ -8,7 +8,6 @@ import Toast from '../../components/Toast';
 import { Tabs } from 'react-tabs';
 import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
 import { usePathName } from '../../../hook/usePathName';
-import { VehicleListing } from '../../../../_metronic/partials/widgets/tables/VehicleListing';
 import { viewVehicle } from '../../../api/Vehicle.ts';
 import { EngineDetailListing } from '../../../../_metronic/partials/widgets/tables/EngineDetailListing';
 import { viewEngine } from '../../../api/EngineDetails.ts';

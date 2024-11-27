@@ -44,13 +44,13 @@ const DashboardChartPatron: React.FC<Props> = ({
     );
 
     const duration = graphData?.allSales?.map(
-      (response: { created_at: number }) => {
+      (response: { createdAt: number }) => {
         if (timeline === 0) {
-          return moment(response.created_at).format('HH:mm:ss');
+          return moment(response.createdAt).format('HH:mm:ss');
         } else if (timeline === 5 || timeline === 4 || timeline === 3) {
-          return moment(response.created_at).format('MMM-YYYY');
+          return moment(response.createdAt).format('MMM-YYYY');
         } else {
-          return moment(response.created_at).format('DD-MMM');
+          return moment(response.createdAt).format('DD-MMM');
         }
       }
     );

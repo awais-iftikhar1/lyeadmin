@@ -9,7 +9,7 @@ import { SelectView } from '../../content/dropdown/SelectView';
 import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-privileges-list/rolesPrivilegesModel';
 import { routes } from '../../../../app/utils/constants';
 import { usePathName } from '../../../../app/hook/usePathName';
-import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
+import { ProductType } from '../../../../app/modules/apps/product-management/types';
 import TestLocationAddEdit from '../../../../app/modules/apps/test-location-management/TestLocation/Testlocation-add-edit';
 import { deleteTestLocation } from '../../../../app/api/TestLocation';
 type Props = {
@@ -29,7 +29,7 @@ const TestLocationListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
+  const [listDetails, setListDetails] = useState<ProductType|null>(null);
   const [itemId, setItemId] = useState<string>();
 
   
@@ -40,7 +40,7 @@ const TestLocationListing: React.FC<Props> = ({
   const [boolState, setBoolState] = useState<string>('');
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
-  const itemDetail = async (data: VehicleType|null) => {    
+  const itemDetail = async (data: ProductType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);

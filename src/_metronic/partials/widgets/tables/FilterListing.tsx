@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UsersListLoading } from '../../../../app/modules/apps/user-management/users-list/components/loading/UsersListLoading';
 import { deletePackages } from '../../../../app/api/delete/deletePackages';
 import { KTSVG } from '../../../helpers';
@@ -54,9 +54,13 @@ const FilterListing: React.FC<Props> = ({
     }
   };
 
-  console.log(selectedValue);
+  useEffect(() => {
+    if(!selectedValue && filterDropDownData){
+      setValue(filterDropDownData[0]?.id)
+      setSelectedValue(filterDropDownData[0])
+    }
+  },[selectedValue,filterDropDownData])
 
-  
 
 
   const deleteFilterHandler = async () => {
@@ -104,7 +108,6 @@ const FilterListing: React.FC<Props> = ({
             </h3>
             <div className='d-flex'>
             <SelectView
-                  
                   addClass={`dropdown--input card-title mb-0`}
                   data={filterDropDownData}
                   placeholder='Select Type...'
@@ -199,14 +202,14 @@ const FilterListing: React.FC<Props> = ({
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.created_at).format(
+                              {moment(item.createdAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.updated_at).format(
+                              {moment(item.updatedAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>

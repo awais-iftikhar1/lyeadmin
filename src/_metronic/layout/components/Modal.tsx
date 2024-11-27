@@ -13,6 +13,7 @@ type Props = {
   show: boolean;
   data: FuelType|EngineType|Filter|FilterType|ModelType|null;
   handleClose: () => void;
+  heading?:string
   children:React.ReactNode
 };
 
@@ -22,6 +23,7 @@ const CustomModal = ({
   show,
   handleClose,
   data,
+  heading,
   children
 }: Props) => {
   const {route} = usePathName()
@@ -42,7 +44,7 @@ const CustomModal = ({
       onHide={handleClose}
     >
       <div className='modal-header'>
-        <h2>{data ? `Edit ${routes[route as keyof typeof routes] }` : `Add ${routes[route as keyof typeof routes]}`}</h2>
+        <h2>{data ? `Edit  ${heading ? heading : routes[route as keyof typeof routes] }` : `Add ${ heading ? heading : routes[route as keyof typeof routes]}`}</h2>
         {/* begin::Close */}
         <div
           className='btn btn-sm btn-icon btn-active-color-primary'

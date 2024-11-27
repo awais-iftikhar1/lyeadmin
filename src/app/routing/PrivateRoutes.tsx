@@ -43,7 +43,7 @@ const Make = lazy(() =>
 import('../modules/apps/make-management/Make')
 );
 const Vehicle = lazy(() =>
-import('../modules/apps/vehicle-management/Vehicle')
+import('../modules/apps/product-management/Product')
 );
 const Model = lazy(() =>
 import('../modules/apps/model-management/Model')
@@ -206,7 +206,7 @@ import('../modules/apps/oilDetails-management/OilDetails')
           }
         />
              <Route
-          path='vehicle-management/*'
+          path='product-management/*'
           element={
             <SuspensedView>
               <Vehicle/>

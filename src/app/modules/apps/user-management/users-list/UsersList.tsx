@@ -20,13 +20,13 @@ const UsersList = () => {
 };
 
 const UsersListWrapper = () => (
-  <QueryRequestProvider>
-    <QueryResponseProvider>
+  // <QueryRequestProvider>
+  //   <QueryResponseProvider>
       <ListViewProvider>
         <UsersList />
       </ListViewProvider>
-    </QueryResponseProvider>
-  </QueryRequestProvider>
+  //   </QueryResponseProvider>
+  // </QueryRequestProvider>
 );
 
 export { UsersListWrapper };

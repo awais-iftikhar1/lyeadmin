@@ -2,7 +2,6 @@ import Axios from '../../user/interceptor';
 import { API_URL } from '../../config/constants/endpoints';
 import { IUser } from '../../user/types';
 import { MakeType } from '../../modules/apps/make-management/types';
-import { VehicleType } from '../../modules/apps/vehicle-management/types';
 import { EngineDetailType } from '../../modules/apps/engine-details-management/types';
 
 
@@ -275,7 +274,7 @@ export const addEngine = async (data:EngineDetailType): Promise<IUser> => {
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };
@@ -326,7 +325,7 @@ export const addEngine = async (data:EngineDetailType): Promise<IUser> => {
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };

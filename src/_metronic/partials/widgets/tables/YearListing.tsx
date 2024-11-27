@@ -10,8 +10,6 @@ import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-priv
 import { routes } from '../../../../app/utils/constants';
 import { usePathName } from '../../../../app/hook/usePathName';
 import { deleteMake } from '../../../../app/api/Make.ts';
-import VehicleAddEdit from '../../../../app/modules/apps/vehicle-management/Vehicle/vehicle-add-edit';
-import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
 import GeneratorAddEdit from '../../../../app/modules/apps/generator-management/Generator/generator-add-edit';
 import OilDetailsAddEdit from '../../../../app/modules/apps/oilDetails-management/OilDetails/OilDetails-add-edit';
 import { ROUTES } from '../../../../app/utils/enum/routesEnum';
@@ -20,6 +18,7 @@ import { deleteOilGrade, deleteOilManufacture } from '../../../../app/api/Oil';
 import OilGradeAddEdit from '../../../../app/modules/apps/oilDetails-management/OilDetails/OilGrade-add-edit';
 import YearDetailsAddEdit from '../../../../app/modules/apps/year-management/YearDetails/YearDetails-add-edit';
 import { deleteYear } from '../../../../app/api/Year';
+import { ProductType } from '../../../../app/modules/apps/product-management/types';
 type Props = {
   className: string;
   loading: boolean;
@@ -37,7 +36,7 @@ const YearListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
+  const [listDetails, setListDetails] = useState<ProductType|null>(null);
   const [itemId, setItemId] = useState<string>();
   const tabName = ROUTES.year
 
@@ -50,7 +49,7 @@ const YearListing: React.FC<Props> = ({
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<IOptionValue>();
-  const itemDetail = async (data: VehicleType|null) => {    
+  const itemDetail = async (data: ProductType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);

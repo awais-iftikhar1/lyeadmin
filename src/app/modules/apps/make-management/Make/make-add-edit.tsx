@@ -6,7 +6,6 @@ import { IOptionValue } from '../../user-roles/roles-privileges-list/rolesPrivil
 import { MakeType } from '../types';
 import { routes } from '../../../../utils/constants/index';
 import { usePathName } from '../../../../hook/usePathName';
-import { addVehicleMachineType, editVehicleMachineType } from '../../../../api/vehicleMachineType.ts/index';
 import { addMake, editMake } from '../../../../api/Make.ts';
 
 type Props = {
@@ -82,7 +81,6 @@ const MakeAddEdit = ({
       setLoading(true);
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -166,14 +164,14 @@ const MakeAddEdit = ({
             </div>
             <div className='row mb-6'>
             <label className='col-lg-4 col-form-label required fw-bold fs-6'>
-                Vehicle Type
+                Make Name
               </label>
 
               <div className='col-lg-8 fv-row position-relative'>
                 <input
                   type='string'
                   className='form-control form-control-lg form-control-solid pe-12'
-                  placeholder='Enter Vehicle type'
+                  placeholder='Enter Make Name'
                   name='makeName'
                   value={formik.values.makeName}
                   onChange={(event) => {

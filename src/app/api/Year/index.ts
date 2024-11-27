@@ -94,7 +94,7 @@ export const editYear = async (data:YearData): Promise<IUser> => {
       } catch (error: any) {
         debugger
         console.error('Failed to post user express interest', error);
-        reject(error.response.obj.message)
+        reject(error.response.data.message)
       }
     });
   };

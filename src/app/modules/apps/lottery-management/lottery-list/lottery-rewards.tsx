@@ -50,7 +50,6 @@ const LotteryRewards = ({ setRefreshList }: Props) => {
       const updatedData = Object.assign(data, values);
       setData(updatedData);
       selectWinnerId(data.lotteryId, data.lotteryType, data.lotteryAmount);
-      resetForm();
       setTimeout(() => {
         setLoading(false);
       }, 1000);

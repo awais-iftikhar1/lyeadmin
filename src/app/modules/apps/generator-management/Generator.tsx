@@ -8,7 +8,7 @@ import Toast from '../../components/Toast';
 import { Tabs } from 'react-tabs';
 import { breadCrumbsData, routes, vehicleTypes } from '../../../utils/constants';
 import { usePathName } from '../../../hook/usePathName';
-import { VehicleListing } from '../../../../_metronic/partials/widgets/tables/VehicleListing';
+import { ProductListing } from '../../../../_metronic/partials/widgets/tables/ProductListing';
 import { viewVehicle } from '../../../api/Vehicle.ts';
 import { GeneratorListing } from '../../../../_metronic/partials/widgets/tables/GeneratorListing';
 import { viewGenerator } from '../../../api/Generator.ts';
@@ -117,7 +117,7 @@ const Generator = () => {
           path='generator'
           element={
             <>
-              <PageTitle breadcrumbs={breadCrumbsData.Vehicle}>{routes[route as keyof typeof routes] }</PageTitle>
+              <PageTitle breadcrumbs={breadCrumbsData.Product}>{routes[route as keyof typeof routes] }</PageTitle>
 
               <Tabs
                 selectedTabClassName='btn-primary'

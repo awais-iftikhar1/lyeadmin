@@ -80,7 +80,6 @@ const PackagesAdd = ({
       const updatedData = Object.assign(data, values);
       setData(updatedData);
       submitPackages();
-      resetForm();
       setTimeout(() => {
         setLoading(false);
       }, 1000);

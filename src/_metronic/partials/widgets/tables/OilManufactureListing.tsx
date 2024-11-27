@@ -10,8 +10,8 @@ import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-priv
 import { routes } from '../../../../app/utils/constants';
 import { usePathName } from '../../../../app/hook/usePathName';
 import { deleteMake } from '../../../../app/api/Make.ts';
-import VehicleAddEdit from '../../../../app/modules/apps/vehicle-management/Vehicle/vehicle-add-edit';
-import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
+import VehicleAddEdit from '../../../../app/modules/apps/product-management/Product/product-add-edit';
+import { ProductType } from '../../../../app/modules/apps/product-management/types';
 import GeneratorAddEdit from '../../../../app/modules/apps/generator-management/Generator/generator-add-edit';
 import OilDetailsAddEdit from '../../../../app/modules/apps/oilDetails-management/OilDetails/OilDetails-add-edit';
 import { ROUTES } from '../../../../app/utils/enum/routesEnum';
@@ -34,20 +34,19 @@ const OilManufactureListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
+  const [listDetails, setListDetails] = useState<ProductType|null>(null);
   const [itemId, setItemId] = useState<string>();
   const tabName = ROUTES.OilManfacture
 
   
   const [isloading, setIsLoading] = useState<boolean>(false);
-  const {route} = usePathName()
 
   const [showToast, setShowToast] = useState<boolean>(false);
   const [boolState, setBoolState] = useState<string>('');
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<IOptionValue>();
-  const itemDetail = async (data: VehicleType|null) => {    
+  const itemDetail = async (data: ProductType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);
@@ -239,7 +238,7 @@ const OilManufactureListing: React.FC<Props> = ({
         show={showCreateAppModal}
         handleClose={() => setShowCreateAppModal(false)}
         data={listDetails}
-
+        heading={'Oil Type'}
       >
         <OilManufactureAddEdit
         heading={false}

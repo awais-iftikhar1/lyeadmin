@@ -1,6 +1,6 @@
 
 
-export interface VehicleType {
+export interface ProductType {
   id?: number,
   makeId:number | undefined,
   numberPlate:number | undefined,
@@ -18,8 +18,10 @@ export interface VehicleType {
   type:string | undefined,
   mileage:number | undefined,
   mileageType:string | undefined,
-
-
+  pictureOfVehicleFront: undefined,
+  pictureOfVehicleBack: undefined,
+  pictureOfVehicleEngine: undefined,
+  pictureOfVehicleVin: undefined,
 }
 
 

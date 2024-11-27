@@ -10,10 +10,11 @@ import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-priv
 import { routes } from '../../../../app/utils/constants';
 import { usePathName } from '../../../../app/hook/usePathName';
 import { deleteMake } from '../../../../app/api/Make.ts';
-import VehicleAddEdit from '../../../../app/modules/apps/vehicle-management/Vehicle/vehicle-add-edit';
-import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
+import VehicleAddEdit from '../../../../app/modules/apps/product-management/Product/product-add-edit';
+import { ProductType } from '../../../../app/modules/apps/product-management/types';
 import GeneratorAddEdit from '../../../../app/modules/apps/generator-management/Generator/generator-add-edit';
 import OilDetailsAddEdit from '../../../../app/modules/apps/oilDetails-management/OilDetails/OilDetails-add-edit';
+import { deleteEngineOilDetails } from '../../../../app/api/Oil';
 type Props = {
   className: string;
   loading: boolean;
@@ -31,7 +32,7 @@ const OilDetailsListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
+  const [listDetails, setListDetails] = useState<ProductType|null>(null);
   const [itemId, setItemId] = useState<string>();
 
   
@@ -43,7 +44,7 @@ const OilDetailsListing: React.FC<Props> = ({
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<IOptionValue>();
-  const itemDetail = async (data: VehicleType|null) => {    
+  const itemDetail = async (data: ProductType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);
@@ -57,7 +58,7 @@ const OilDetailsListing: React.FC<Props> = ({
     if(!itemId) return
     setIsLoading(true);
     try {
-      const data = await deleteMake(itemId);
+      const data = await deleteEngineOilDetails(itemId);
       console.log(data);
       
       setRefreshList(true);
@@ -75,7 +76,7 @@ const OilDetailsListing: React.FC<Props> = ({
   const SuccessEdit = () => {
     setBoolState('success');
     setShowToast(true);
-    setStateMsg('Your Vehicle has been edited successfully.');
+    setStateMsg('Updated successfully.');
   };
 
   const FailedEdit = async (error: string) => {
@@ -258,7 +259,7 @@ const OilDetailsListing: React.FC<Props> = ({
       <ConfrimModal
         show={showConfirmModal}
         confirmProcess={deleteItemHandler}
-        modalTitle={'Delete Make'}
+        modalTitle={'Delete Oil Details'}
         handleClose={() => setShowConfrimModal(false)}
       />
     </>

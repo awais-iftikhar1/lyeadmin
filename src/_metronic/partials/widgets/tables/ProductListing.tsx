@@ -10,8 +10,9 @@ import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-priv
 import { routes } from '../../../../app/utils/constants';
 import { usePathName } from '../../../../app/hook/usePathName';
 import { deleteMake } from '../../../../app/api/Make.ts';
-import VehicleAddEdit from '../../../../app/modules/apps/vehicle-management/Vehicle/vehicle-add-edit';
-import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
+import VehicleAddEdit from '../../../../app/modules/apps/product-management/Product/product-add-edit';
+import { ProductType } from '../../../../app/modules/apps/product-management/types';
+import { deleteVehicle } from '../../../../app/api/Vehicle.ts';
 type Props = {
   className: string;
   loading: boolean;
@@ -22,7 +23,7 @@ type Props = {
   filterDropDownData:any
 };
 
-const VehicleListing: React.FC<Props> = ({
+const ProductListing: React.FC<Props> = ({
   className,
   loading,
   setRefreshList,
@@ -33,7 +34,7 @@ const VehicleListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
+  const [listDetails, setListDetails] = useState<ProductType|null>(null);
   const [itemId, setItemId] = useState<string>();
 
   const [isloading, setIsLoading] = useState<boolean>(false);
@@ -44,7 +45,7 @@ const VehicleListing: React.FC<Props> = ({
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<IOptionValue>();
-  const itemDetail = async (data: VehicleType|null) => {    
+  const itemDetail = async (data: ProductType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);
@@ -58,7 +59,7 @@ const VehicleListing: React.FC<Props> = ({
     if(!itemId) return
     setIsLoading(true);
     try {
-      const data = await deleteMake(itemId);
+      const data = await deleteVehicle(itemId);
       console.log(data);
       
       setRefreshList(true);
@@ -85,6 +86,7 @@ const VehicleListing: React.FC<Props> = ({
     setShowToast(true);
   };
 
+  console.log(filterDropDownData,'filterDropDownData')
 
   return (
     <>
@@ -276,4 +278,4 @@ const VehicleListing: React.FC<Props> = ({
   );
 };
 
-export { VehicleListing };
+export { ProductListing };

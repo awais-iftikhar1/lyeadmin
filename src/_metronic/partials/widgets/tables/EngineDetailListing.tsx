@@ -10,8 +10,8 @@ import { IOptionValue } from '../../../../app/modules/apps/user-roles/roles-priv
 import { routes } from '../../../../app/utils/constants';
 import { usePathName } from '../../../../app/hook/usePathName';
 import { deleteMake } from '../../../../app/api/Make.ts';
-import VehicleAddEdit from '../../../../app/modules/apps/vehicle-management/Vehicle/vehicle-add-edit';
-import { VehicleType } from '../../../../app/modules/apps/vehicle-management/types';
+import VehicleAddEdit from '../../../../app/modules/apps/product-management/Product/product-add-edit';
+import { ProductType } from '../../../../app/modules/apps/product-management/types';
 import EngineDetailsAddEdit from '../../../../app/modules/apps/engine-details-management/EngineDetails/engine-details-add-edit';
 type Props = {
   className: string;
@@ -34,7 +34,7 @@ const EngineDetailListing: React.FC<Props> = ({
 }) => {
   const [showCreateAppModal, setShowCreateAppModal] = useState<boolean>(false);
   const [showConfirmModal, setShowConfrimModal] = useState<boolean>(false);
-  const [listDetails, setListDetails] = useState<VehicleType|null>(null);
+  const [listDetails, setListDetails] = useState<ProductType|null>(null);
   const [itemId, setItemId] = useState<string>();
 
   const [isloading, setIsLoading] = useState<boolean>(false);
@@ -45,7 +45,7 @@ const EngineDetailListing: React.FC<Props> = ({
   const [stateMsg, setStateMsg] = useState<string>('');
   const [apiError, setApiError] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<IOptionValue>();
-  const itemDetail = async (data: VehicleType|null) => {    
+  const itemDetail = async (data: ProductType|null) => {    
     try {
       setListDetails(data)
       setShowCreateAppModal(true);

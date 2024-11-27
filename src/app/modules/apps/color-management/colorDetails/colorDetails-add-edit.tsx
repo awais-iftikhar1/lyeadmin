@@ -65,7 +65,6 @@ const ColorDetailsAddEdit = ({
       setLoading(true); 
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -153,7 +152,7 @@ const ColorDetailsAddEdit = ({
                 type='submit'
                 className='btn btn-primary'
               >
-                {!loading && (colorData ? `Edit ${tabName}` : `Add ${tabName}`)}
+                {!loading && (colorData ? `Update ${tabName}` : `Add ${tabName}`)}
                 {loading && (
                   <span
                     className='indicator-progress'

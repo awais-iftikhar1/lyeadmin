@@ -17,7 +17,8 @@ export const routes = {
     corporateRequest : 'Corporate Request',
     color:'Color',
     business:'Business Type',
-    testLocation :'Test Location'
+    testLocation :'Test Location',
+    product:'Product'
 
 }
 export const breadCrumbsData ={
@@ -91,10 +92,10 @@ export const breadCrumbsData ={
           isActive: false,
         },
       ],
-      [ROUTES.vehicle] : [
+      [ROUTES.product] : [
         {
-          title: 'Vehicle Management',
-          path: '/vehicle-management/vehicle',
+          title: 'Product Management',
+          path: '/product-management/product',
           isSeparator: false,
           isActive: false,
         },

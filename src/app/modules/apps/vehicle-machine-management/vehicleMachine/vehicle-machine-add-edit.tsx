@@ -81,7 +81,6 @@ const VehicleMachineAddEdit = ({
       setLoading(true);
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -106,16 +105,17 @@ const VehicleMachineAddEdit = ({
       }
       handleClose();
       SuccessFunction();
-      formik.resetForm();
+      // formik.resetForm();
       setRefreshList(true);
       setTabIndex(0);
     } catch (error) {
+      console.log(error,'error')
       setApiError(error);
       FailFunction(error);
     }
   };
 
-
+console.log(formik.values,'formik.values')
   return (
     <div className={`card mb-0 mb-xl-5 ${heading && 'mb-5'}`}>
       {heading && (

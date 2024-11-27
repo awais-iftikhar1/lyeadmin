@@ -65,7 +65,6 @@ const OilGradeAddEdit = ({
       setLoading(true); 
       const formData = Object.assign(initialValues, values);
       editPackagesHandler(formData);
-      resetForm()
       setTimeout(() => {
         setLoading(false);
       }, 1000);
@@ -125,14 +124,14 @@ const OilGradeAddEdit = ({
  
             <div className='row mb-6'>
               <label className='col-lg-4 col-form-label required fw-bold fs-6'>
-                Name
+                Oil Grade Name
               </label>
 
               <div className='col-lg-8 fv-row position-relative'>
                 <input
                   type='text'
                   className='form-control form-control-lg form-control-solid pe-12'
-                  placeholder='Enter Name'
+                  placeholder='Enter Oil Grade Name'
                   name='oilGrade'
                   value={formik.values.oilGrade}
                   onChange={(event) => {

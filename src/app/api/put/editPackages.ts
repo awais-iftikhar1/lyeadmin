@@ -44,9 +44,9 @@ export const editPackages = async (data:PackagesDetails): Promise<IUser> => {
     } catch (error: any) {
       console.error('Failed to post user express interest', error);
       reject(
-        typeof error.response.obj.message == 'string'
-          ? error.response.obj.message
-          : error.response.obj.message[0]
+        typeof error.response.data.message == 'string'
+          ? error.response.data.message
+          : error.response.data.message[0]
       );
     }
   });

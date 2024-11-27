@@ -13,6 +13,12 @@ export interface GeneratorType {
   noOfPhases:string | undefined,
   notes:string | undefined,
   description:string | undefined,
+  pictureOfEngines:string | undefined,
+  pictureOfGenerators:string | undefined,
+
+  pictureOfOilFilter:string | undefined,
+  pictureOfPanel:string | undefined
+
 }
 
 

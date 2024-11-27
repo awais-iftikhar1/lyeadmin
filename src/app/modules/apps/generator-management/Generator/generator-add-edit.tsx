@@ -48,6 +48,16 @@ const GeneratorAddEdit = ({
       .required('description is required'),
     notes: Yup.string()
       .required('notes is required'),
+      pictureOfEngines: Yup.mixed().required(
+        "Picture of the Engines is required"
+      ),
+      pictureOfGenerators: Yup.mixed().required(
+        "Picture of the generators is required"
+      ),
+      pictureOfOilFilter: Yup.mixed().required(
+        "Picture of Oil filter is required"
+      ),
+      pictureOfPanel: Yup.mixed().required("Picture of Panel is required"),
   });
   
 
@@ -135,8 +145,14 @@ const GeneratorAddEdit = ({
         generatorData.pictureOfOilFilter,
         generatorData.pictureOfPanel,
       ])
+      setFiles([
+        { name: "pictureOfEngines", file: generatorData.pictureOfEngines },
+        { name: "pictureOfGenerators", file: generatorData.pictureOfGenerators },
+        { name: "pictureOfOilFilter", file: generatorData.pictureOfOilFilter },
+        { name: "pictureOfPanel", file: generatorData.pictureOfPanel },
+      ]);
     }
-  },[])
+  },[actionType,generatorData])
 
   useEffect(() => {
     console.log(files,generatorData);
@@ -510,7 +526,23 @@ const GeneratorAddEdit = ({
                   url={images[3]}
                 />
               </div>
-
+              {(formik.errors?.pictureOfEngines &&
+                formik.touched.pictureOfEngines) ||
+              (formik.errors?.pictureOfGenerators &&
+                formik.touched.pictureOfGenerators) ||
+              (formik.errors?.pictureOfOilFilter &&
+                formik.touched.pictureOfOilFilter) ||
+              (formik.errors?.pictureOfPanel &&
+                formik.touched.pictureOfPanel) ? (
+                <div style={{marginBottom:10}} className="fv-plugins-message-container">
+                  <div className="fv-help-block">
+                    {formik.errors.pictureOfEngines ||
+                      formik.errors.pictureOfGenerators ||
+                      formik.errors.pictureOfOilFilter ||
+                      formik.errors.pictureOfPanel}
+                  </div>
+                </div>
+              ) : null}
 
               {/* /// */}
               <div className='row mb-6'>

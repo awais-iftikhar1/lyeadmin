@@ -222,14 +222,14 @@ const ModelListing: React.FC<Props> = ({
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.created_at).format(
+                              {moment(item.createdAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.updated_at).format(
+                              {moment(item.updatedAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>

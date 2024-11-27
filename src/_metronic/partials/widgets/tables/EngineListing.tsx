@@ -82,7 +82,7 @@ const EngineListing: React.FC<Props> = ({
   const SuccessEdit = () => {
     setBoolState('success');
     setShowToast(true);
-    setStateMsg('Your packages has been edited successfully.');
+    setStateMsg('Your Engine has been updated successfully.');
   };
 
   const FailedEdit = async (error: string) => {
@@ -185,14 +185,14 @@ const EngineListing: React.FC<Props> = ({
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.created_at).format(
+                              {moment(item.createdAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>
                           </td>
                           <td>
                             <p className='text-dark fw-bold text-hover-primary d-block mb-1 fs-6'>
-                              {moment(item.updated_at).format(
+                              {moment(item.updatedAt).format(
                                 'DD-MMM-YYYY, HH:mm:ss'
                               )}
                             </p>
